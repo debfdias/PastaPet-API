@@ -15,6 +15,7 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   pets      Pet[]
+  notes     Note[]
 }
 
 model Pet {
@@ -28,10 +29,30 @@ model Pet {
   updatedAt DateTime @updatedAt
   user      User     @relation(fields: [userId], references: [id])
   userId    String
+  notes     Note[]
 }
 
 enum PetType {
   DOG
   CAT
   OTHER
+}
+
+enum NoteSeverity {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+model Note {
+  id          String       @id @default(uuid())
+  title       String
+  description String
+  severity    NoteSeverity
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  pet         Pet          @relation(fields: [petId], references: [id])
+  petId       String
+  author      User         @relation(fields: [authorId], references: [id])
+  authorId    String
 }
