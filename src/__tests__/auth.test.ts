@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 
 describe("Auth Routes", () => {
   const testUser = {
-    email: "test@example.com",
+    email: "auth_test@example.com",
     password: "password123",
     fullName: "Test User",
   };
@@ -13,7 +13,7 @@ describe("Auth Routes", () => {
   describe("POST /api/auth/login", () => {
     it("should login successfully with valid credentials", async () => {
       const hashedPassword = await bcrypt.hash(testUser.password, 10);
-      await prisma.user.create({
+      const createdUser = await prisma.user.create({
         data: {
           email: testUser.email,
           password: hashedPassword,

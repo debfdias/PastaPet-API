@@ -3,6 +3,7 @@ import { app } from "../index";
 import { prisma } from "./setup";
 import jwt from "jsonwebtoken";
 import { PetType } from "@prisma/client";
+import bcrypt from "bcryptjs";
 
 describe("Pet Routes", () => {
   let authToken: string;
@@ -10,7 +11,7 @@ describe("Pet Routes", () => {
   let testPetId: string;
 
   const testUser = {
-    email: "test@example.com",
+    email: "pet_test@example.com",
     password: "password123",
     fullName: "Test User",
   };
@@ -24,31 +25,39 @@ describe("Pet Routes", () => {
   };
 
   beforeEach(async () => {
-    // Create a test user
-    const user = await prisma.user.create({
-      data: {
-        email: testUser.email,
-        password: testUser.password,
-        fullName: testUser.fullName,
-      },
-    });
-    userId = user.id;
+    try {
+      // Hash the password before creating user
+      const hashedPassword = await bcrypt.hash(testUser.password, 10);
 
-    // Create a test pet
-    const pet = await prisma.pet.create({
-      data: {
-        ...testPet,
-        userId: user.id,
-      },
-    });
-    testPetId = pet.id;
+      // Create a test user with hashed password
+      const user = await prisma.user.create({
+        data: {
+          email: testUser.email,
+          password: hashedPassword,
+          fullName: testUser.fullName,
+        },
+      });
+      userId = user.id;
 
-    // Generate auth token
-    authToken = jwt.sign(
-      { userId: user.id },
-      process.env.JWT_SECRET || "test-secret",
-      { expiresIn: "1h" }
-    );
+      // Create a test pet
+      const pet = await prisma.pet.create({
+        data: {
+          ...testPet,
+          userId: user.id,
+        },
+      });
+      testPetId = pet.id;
+
+      // Generate auth token
+      authToken = jwt.sign(
+        { userId: user.id, email: user.email },
+        process.env.JWT_SECRET || "test-secret",
+        { expiresIn: "1h" }
+      );
+    } catch (error) {
+      console.error("Error in test setup:", error);
+      throw error;
+    }
   });
 
   describe("GET /api/pets", () => {
