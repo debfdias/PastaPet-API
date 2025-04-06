@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { PrismaClient } from "@prisma/client";
 import userRoutes from "./routes/userRoutes";
 import authRoutes from "./routes/authRoutes";
+import petRoutes from "./routes/petRoutes";
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ app.use(express.json());
 // Routes
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/pets", petRoutes);
 
 // Health check endpoint
 app.get("/health", (req, res) => {
