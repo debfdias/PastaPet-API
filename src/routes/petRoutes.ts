@@ -42,6 +42,7 @@ router.post("/", authenticateToken, async (req: AuthenticatedRequest, res) => {
 router.get("/", authenticateToken, async (req: AuthenticatedRequest, res) => {
   try {
     const userId = req.user?.userId;
+    const { type } = req.query;
 
     if (!userId) {
       return res.status(401).json({ error: "User not authenticated" });
@@ -50,6 +51,7 @@ router.get("/", authenticateToken, async (req: AuthenticatedRequest, res) => {
     const pets = await prisma.pet.findMany({
       where: {
         userId,
+        ...(type ? { type: type as PetType } : {}),
       },
     });
 
