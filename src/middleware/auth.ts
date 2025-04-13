@@ -1,8 +1,10 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
-interface AuthRequest extends Request {
-  user?: any;
+export interface AuthRequest extends Request {
+  user?: {
+    userId: string;
+  };
 }
 
 export const authenticateToken = (
@@ -18,8 +20,8 @@ export const authenticateToken = (
   }
 
   try {
-    const user = jwt.verify(token, process.env.JWT_SECRET || "");
-    req.user = user;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || "");
+    req.user = { userId: (decoded as { userId: string }).userId };
     next();
   } catch (error) {
     return res.status(403).json({ message: "Invalid token" });
