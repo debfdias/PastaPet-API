@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 export const createEvent = async (req: AuthRequest, res: Response) => {
   try {
-    const { title, type, petId } = req.body;
+    const { title, type, petId, eventDate } = req.body;
     const userId = req.user?.userId;
 
     if (!userId) {
@@ -33,6 +33,7 @@ export const createEvent = async (req: AuthRequest, res: Response) => {
         type,
         petId,
         userId,
+        eventDate: new Date(eventDate),
       },
     });
 
