@@ -35,7 +35,7 @@ export const createPet = async (req: AuthRequest, res: Response) => {
 export const getPets = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user?.userId;
-    const { type } = req.query;
+    const { type, name } = req.query;
 
     if (!userId) {
       return res.status(401).json({ message: "User not authenticated" });
@@ -45,6 +45,9 @@ export const getPets = async (req: AuthRequest, res: Response) => {
       where: {
         userId,
         ...(type ? { type: type as PetType } : {}),
+        ...(name
+          ? { name: { contains: name as string, mode: "insensitive" } }
+          : {}),
       },
     });
 
