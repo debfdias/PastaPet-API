@@ -117,7 +117,7 @@ export const updatePet = async (req: AuthRequest, res: Response) => {
       data: {
         name,
         dob: dob ? new Date(dob) : undefined,
-        weight,
+        weight: weight ? parseFloat(weight) : undefined,
         type: type as PetType,
         breed,
         image,
@@ -126,6 +126,7 @@ export const updatePet = async (req: AuthRequest, res: Response) => {
 
     res.json(updatedPet);
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "Error updating pet" });
   }
 };
