@@ -2,7 +2,7 @@ import request from "supertest";
 import { app } from "../index";
 import { prisma } from "./setup";
 import jwt from "jsonwebtoken";
-import { PetType } from "@prisma/client";
+import { PetType, PetGender } from "@prisma/client";
 import bcrypt from "bcryptjs";
 
 describe("Pet Routes", () => {
@@ -22,6 +22,7 @@ describe("Pet Routes", () => {
     breed: "Persian",
     dob: new Date("2020-01-01"),
     weight: 4.5,
+    gender: PetGender.MALE,
   };
 
   beforeEach(async () => {
