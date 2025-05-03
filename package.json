@@ -4,6 +4,7 @@
   "description": "Node.js API with TypeScript, Prisma, and JWT authentication",
   "main": "dist/server.js",
   "scripts": {
+    "start": "node dist/server.js",
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "npx prisma generate && tsc",
     "prisma:generate": "prisma generate",
