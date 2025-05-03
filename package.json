@@ -2,16 +2,16 @@
   "name": "pasta_pet_api",
   "version": "1.0.0",
   "description": "Node.js API with TypeScript, Prisma, and JWT authentication",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
-    "build": "npx prisma generate && tsc",
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "postinstall": "prisma generate",
+    "build": "npx prisma generate && npm run build",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "postinstall": "prisma generate"
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",

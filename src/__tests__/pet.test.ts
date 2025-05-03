@@ -1,5 +1,5 @@
 import request from "supertest";
-import { app } from "../index";
+import { app } from "../server";
 import { prisma } from "./setup";
 import jwt from "jsonwebtoken";
 import { PetType, PetGender } from "@prisma/client";
