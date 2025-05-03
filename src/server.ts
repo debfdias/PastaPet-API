@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-import { PrismaClient } from "@prisma/client";
 import userRoutes from "./routes/userRoutes";
 import authRoutes from "./routes/authRoutes";
 import petRoutes from "./routes/petRoutes";
@@ -8,7 +7,6 @@ import noteRoutes from "./routes/noteRoutes";
 import eventRoutes from "./routes/eventRoutes";
 
 export const app = express();
-const prisma = new PrismaClient();
 const port = process.env.PORT || 3000;
 
 // Middleware
@@ -44,9 +42,3 @@ if (require.main === module) {
     console.log(`Server is running on port ${port}`);
   });
 }
-
-// Handle shutdown
-process.on("SIGINT", async () => {
-  await prisma.$disconnect();
-  process.exit();
-});
