@@ -77,6 +77,18 @@ export const getPetById = async (req: AuthRequest, res: Response) => {
             eventDate: "desc",
           },
         },
+        VaccineRecord: {
+          orderBy: {
+            administrationDate: "desc",
+          },
+          include: {
+            vaccineType: {
+              select: {
+                name: true,
+              },
+            },
+          },
+        },
       },
     });
 

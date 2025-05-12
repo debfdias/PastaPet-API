@@ -6,6 +6,7 @@ import authRoutes from "./routes/authRoutes";
 import petRoutes from "./routes/petRoutes";
 import noteRoutes from "./routes/noteRoutes";
 import eventRoutes from "./routes/eventRoutes";
+import vaccineRoutes from "./routes/vaccineRoutes";
 
 export const app = express();
 const prisma = new PrismaClient();
@@ -32,6 +33,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/pets", petRoutes);
 app.use("/api/notes", noteRoutes);
 app.use("/api/events", eventRoutes);
+app.use("/api/vaccines", vaccineRoutes);
 
 // Health check endpoint
 app.get("/health", (req, res) => {
