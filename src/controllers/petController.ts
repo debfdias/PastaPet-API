@@ -12,12 +12,11 @@ export const createPet = async (req: AuthRequest, res: Response) => {
     if (!userId) {
       return res.status(401).json({ message: "User not authenticated" });
     }
-
     const pet = await prisma.pet.create({
       data: {
         name,
         dob: new Date(dob),
-        weight,
+        weight: parseFloat(weight),
         type: type as PetType,
         breed,
         image,
@@ -28,6 +27,7 @@ export const createPet = async (req: AuthRequest, res: Response) => {
 
     res.status(201).json(pet);
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "Error creating pet" });
   }
 };
