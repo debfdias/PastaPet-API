@@ -79,20 +79,18 @@ export const getUserById = async (req: Request, res: Response) => {
 export const updateUser = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { fullName, email } = req.body;
+    const { fullName, password } = req.body;
+
+    // Create update data object
+    const updateData: any = {};
+    if (fullName) updateData.fullName = fullName;
+    if (password) {
+      updateData.password = await bcrypt.hash(password, 10);
+    }
 
     const user = await prisma.user.update({
       where: { id },
-      data: {
-        fullName,
-        email,
-      },
-      select: {
-        id: true,
-        fullName: true,
-        email: true,
-        createdAt: true,
-      },
+      data: updateData,
     });
 
     res.json(user);
