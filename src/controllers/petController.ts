@@ -35,7 +35,7 @@ export const createPet = async (req: AuthRequest, res: Response) => {
 export const getPets = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user?.userId;
-    const { type, name } = req.query;
+    const { type, name, orderByAge } = req.query;
 
     if (!userId) {
       return res.status(401).json({ message: "User not authenticated" });
@@ -48,6 +48,11 @@ export const getPets = async (req: AuthRequest, res: Response) => {
         ...(name
           ? { name: { contains: name as string, mode: "insensitive" } }
           : {}),
+      },
+      orderBy: {
+        ...(orderByAge
+          ? { dob: orderByAge as "asc" | "desc" }
+          : { createdAt: "desc" }),
       },
     });
 
