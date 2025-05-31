@@ -94,6 +94,20 @@ export const getPetById = async (req: AuthRequest, res: Response) => {
             },
           },
         },
+        Treatment: {
+          orderBy: {
+            startDate: "desc",
+          },
+          include: {
+            medications: true,
+            exams: true,
+          },
+        },
+        Exam: {
+          orderBy: {
+            createdAt: "desc",
+          },
+        },
       },
     });
 

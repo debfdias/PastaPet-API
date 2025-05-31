@@ -36,6 +36,8 @@ model Pet {
   notes         Note[]
   events        Event[]
   VaccineRecord VaccineRecord[]
+  Exam          Exam[]
+  Treatment     Treatment[]
 }
 
 enum PetType {
@@ -114,4 +116,52 @@ model VaccineType {
   updatedAt             DateTime @updatedAt
 
   vaccineRecords VaccineRecord[]
+}
+
+model Exam {
+  id             String     @id @default(uuid())
+  pet            Pet        @relation(fields: [petId], references: [id])
+  petId          String
+  title          String
+  cause          String
+  administeredBy String?
+  fileUrl        String?
+  resultSummary  String?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+  treatment      Treatment? @relation("TreatmentExams", fields: [treatmentId], references: [id])
+  treatmentId    String?
+
+  @@index([petId])
+}
+
+model Treatment {
+  id          String    @id @default(uuid())
+  pet         Pet       @relation(fields: [petId], references: [id])
+  petId       String
+  cause       String
+  description String?
+  startDate   DateTime
+  endDate     DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  exams       Exam[]       @relation("TreatmentExams")
+  medications Medication[]
+
+  @@index([petId])
+}
+
+model Medication {
+  id          String    @id @default(uuid())
+  treatment   Treatment @relation(fields: [treatmentId], references: [id])
+  treatmentId String
+  name        String // e.g. "Doxiciclina"
+  dosage      String? // e.g. "100mg"
+  frequency   String? // e.g. "A cada 12h"
+  notes       String? // Instruções extras
+  startDate   DateTime
+  endDate     DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
