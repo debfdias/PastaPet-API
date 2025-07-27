@@ -6,7 +6,18 @@ const prisma = new PrismaClient();
 
 export const createPet = async (req: AuthRequest, res: Response) => {
   try {
-    const { name, dob, weight, type, breed, image, gender } = req.body;
+    const {
+      name,
+      dob,
+      weight,
+      type,
+      breed,
+      image,
+      gender,
+      hasPetPlan,
+      petPlanName,
+      hasFuneraryPlan,
+    } = req.body;
     const userId = req.user?.userId;
 
     if (!userId) {
@@ -22,6 +33,9 @@ export const createPet = async (req: AuthRequest, res: Response) => {
         image,
         userId,
         gender: gender as PetGender,
+        hasPetPlan: hasPetPlan || false,
+        petPlanName,
+        hasFuneraryPlan: hasFuneraryPlan || false,
       },
     });
 
@@ -125,7 +139,17 @@ export const updatePet = async (req: AuthRequest, res: Response) => {
   try {
     const { id } = req.params;
     const userId = req.user?.userId;
-    const { name, dob, weight, type, breed, image } = req.body;
+    const {
+      name,
+      dob,
+      weight,
+      type,
+      breed,
+      image,
+      hasPetPlan,
+      petPlanName,
+      hasFuneraryPlan,
+    } = req.body;
 
     if (!userId) {
       return res.status(401).json({ message: "User not authenticated" });
@@ -152,6 +176,9 @@ export const updatePet = async (req: AuthRequest, res: Response) => {
         type: type as PetType,
         breed,
         image,
+        ...(hasPetPlan !== undefined && { hasPetPlan }),
+        petPlanName,
+        ...(hasFuneraryPlan !== undefined && { hasFuneraryPlan }),
       },
     });
 
