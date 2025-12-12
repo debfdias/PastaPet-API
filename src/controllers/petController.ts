@@ -17,6 +17,7 @@ export const createPet = async (req: AuthRequest, res: Response) => {
       hasPetPlan,
       petPlanName,
       hasFuneraryPlan,
+      funeraryPlanStartDate,
     } = req.body;
     const userId = req.user?.userId;
 
@@ -36,6 +37,9 @@ export const createPet = async (req: AuthRequest, res: Response) => {
         hasPetPlan: hasPetPlan || false,
         petPlanName,
         hasFuneraryPlan: hasFuneraryPlan || false,
+        funeraryPlanStartDate: funeraryPlanStartDate
+          ? new Date(funeraryPlanStartDate)
+          : undefined,
       },
     });
 
@@ -149,6 +153,7 @@ export const updatePet = async (req: AuthRequest, res: Response) => {
       hasPetPlan,
       petPlanName,
       hasFuneraryPlan,
+      funeraryPlanStartDate,
     } = req.body;
 
     if (!userId) {
@@ -179,6 +184,11 @@ export const updatePet = async (req: AuthRequest, res: Response) => {
         ...(hasPetPlan !== undefined && { hasPetPlan }),
         petPlanName,
         ...(hasFuneraryPlan !== undefined && { hasFuneraryPlan }),
+        ...(funeraryPlanStartDate !== undefined && {
+          funeraryPlanStartDate: funeraryPlanStartDate
+            ? new Date(funeraryPlanStartDate)
+            : null,
+        }),
       },
     });
 
