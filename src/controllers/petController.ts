@@ -62,6 +62,7 @@ export const getPets = async (req: AuthRequest, res: Response) => {
     const pets = await prisma.pet.findMany({
       where: {
         userId,
+        active: true,
         ...(type ? { type: type as PetType } : {}),
         ...(name
           ? { name: { contains: name as string, mode: "insensitive" } }
@@ -150,6 +151,7 @@ export const updatePet = async (req: AuthRequest, res: Response) => {
       type,
       breed,
       image,
+      active,
       hasPetPlan,
       petPlanName,
       hasFuneraryPlan,
@@ -181,6 +183,7 @@ export const updatePet = async (req: AuthRequest, res: Response) => {
         type: type as PetType,
         breed,
         image,
+        ...(active !== undefined && { active }),
         ...(hasPetPlan !== undefined && { hasPetPlan }),
         petPlanName,
         ...(hasFuneraryPlan !== undefined && { hasFuneraryPlan }),
@@ -196,6 +199,37 @@ export const updatePet = async (req: AuthRequest, res: Response) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Error updating pet" });
+  }
+};
+
+export const getInactivePets = async (req: AuthRequest, res: Response) => {
+  try {
+    const userId = req.user?.userId;
+    const { type, name, orderByAge } = req.query;
+
+    if (!userId) {
+      return res.status(401).json({ message: "User not authenticated" });
+    }
+
+    const pets = await prisma.pet.findMany({
+      where: {
+        userId,
+        active: false,
+        ...(type ? { type: type as PetType } : {}),
+        ...(name
+          ? { name: { contains: name as string, mode: "insensitive" } }
+          : {}),
+      },
+      orderBy: {
+        ...(orderByAge
+          ? { dob: orderByAge as "asc" | "desc" }
+          : { createdAt: "desc" }),
+      },
+    });
+
+    res.json(pets);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching inactive pets" });
   }
 };
 

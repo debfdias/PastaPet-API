@@ -29,6 +29,7 @@ model Pet {
   breed                 String
   gender                PetGender
   image                 String?
+  active                Boolean         @default(true)
   hasPetPlan            Boolean         @default(false)
   petPlanName           String?
   hasFuneraryPlan       Boolean         @default(false)
