@@ -81,6 +81,56 @@ export const getEventsByPet = async (req: AuthRequest, res: Response) => {
   }
 };
 
+export const getAllEvents = async (req: AuthRequest, res: Response) => {
+  try {
+    const userId = req.user?.userId;
+
+    if (!userId) {
+      return res.status(401).json({ message: "User not authenticated" });
+    }
+
+    // Parse pagination parameters
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 10;
+    const skip = (page - 1) * limit;
+
+    // Get total count for pagination metadata
+    const totalCount = await prisma.event.count({
+      where: {
+        userId,
+      },
+    });
+
+    // Fetch paginated events
+    const events = await prisma.event.findMany({
+      where: {
+        userId,
+      },
+      orderBy: {
+        eventDate: "desc",
+      },
+      skip,
+      take: limit,
+    });
+
+    const totalPages = Math.ceil(totalCount / limit);
+
+    res.json({
+      events,
+      pagination: {
+        currentPage: page,
+        totalPages,
+        totalCount,
+        limit,
+        hasNextPage: page < totalPages,
+        hasPreviousPage: page > 1,
+      },
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching events" });
+  }
+};
+
 export const getEventById = async (req: AuthRequest, res: Response) => {
   try {
     const { id } = req.params;
