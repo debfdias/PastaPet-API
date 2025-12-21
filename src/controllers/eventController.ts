@@ -66,6 +66,19 @@ export const getEventsByPet = async (req: AuthRequest, res: Response) => {
         .json({ message: "Pet not found or not owned by user" });
     }
 
+    // Parse pagination parameters
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 5;
+    const skip = (page - 1) * limit;
+
+    // Get total count for pagination metadata
+    const totalCount = await prisma.event.count({
+      where: {
+        petId,
+      },
+    });
+
+    // Fetch paginated events
     const events = await prisma.event.findMany({
       where: {
         petId,
@@ -73,9 +86,23 @@ export const getEventsByPet = async (req: AuthRequest, res: Response) => {
       orderBy: {
         createdAt: "desc",
       },
+      skip,
+      take: limit,
     });
 
-    res.json(events);
+    const totalPages = Math.ceil(totalCount / limit);
+
+    res.json({
+      events,
+      pagination: {
+        currentPage: page,
+        totalPages,
+        totalCount,
+        limit,
+        hasNextPage: page < totalPages,
+        hasPreviousPage: page > 1,
+      },
+    });
   } catch (error) {
     res.status(500).json({ message: "Error fetching events" });
   }
