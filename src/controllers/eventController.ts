@@ -106,6 +106,9 @@ export const getAllEvents = async (req: AuthRequest, res: Response) => {
       where: {
         userId,
       },
+      include: {
+        pet: true,
+      },
       orderBy: {
         eventDate: "desc",
       },
