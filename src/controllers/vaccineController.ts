@@ -15,6 +15,7 @@ export const createVaccineRecord = async (req: AuthRequest, res: Response) => {
       lotNumber,
       administeredBy,
       notes,
+      booster,
     } = req.body;
     const userId = req.user?.userId;
 
@@ -46,6 +47,7 @@ export const createVaccineRecord = async (req: AuthRequest, res: Response) => {
         lotNumber,
         administeredBy,
         notes,
+        booster: booster !== undefined ? booster : false,
       },
       include: {
         vaccineType: true,
@@ -171,6 +173,7 @@ export const updateVaccineRecord = async (req: AuthRequest, res: Response) => {
       lotNumber,
       administeredBy,
       notes,
+      booster,
     } = req.body;
     const userId = req.user?.userId;
 
@@ -203,6 +206,7 @@ export const updateVaccineRecord = async (req: AuthRequest, res: Response) => {
         lotNumber,
         administeredBy,
         notes,
+        ...(booster !== undefined && { booster }),
       },
       include: {
         vaccineType: true,
