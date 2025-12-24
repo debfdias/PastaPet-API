@@ -95,39 +95,6 @@ export const getPetById = async (req: AuthRequest, res: Response) => {
         id,
         userId,
       },
-      include: {
-        events: {
-          orderBy: {
-            eventDate: "desc",
-          },
-        },
-        VaccineRecord: {
-          orderBy: {
-            administrationDate: "desc",
-          },
-          include: {
-            vaccineType: {
-              select: {
-                name: true,
-              },
-            },
-          },
-        },
-        Treatment: {
-          orderBy: {
-            startDate: "desc",
-          },
-          include: {
-            medications: true,
-            exams: true,
-          },
-        },
-        Exam: {
-          orderBy: {
-            createdAt: "desc",
-          },
-        },
-      },
     });
 
     if (!pet) {

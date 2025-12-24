@@ -101,6 +101,19 @@ export const getTreatmentsByPet = async (req: AuthRequest, res: Response) => {
         .json({ message: "Pet not found or not owned by user" });
     }
 
+    // Parse pagination parameters
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 10;
+    const skip = (page - 1) * limit;
+
+    // Get total count for pagination metadata
+    const totalCount = await prisma.treatment.count({
+      where: {
+        petId,
+      },
+    });
+
+    // Fetch paginated treatments
     const treatments = await prisma.treatment.findMany({
       where: {
         petId,
@@ -112,9 +125,23 @@ export const getTreatmentsByPet = async (req: AuthRequest, res: Response) => {
       orderBy: {
         startDate: "desc",
       },
+      skip,
+      take: limit,
     });
 
-    res.json(treatments);
+    const totalPages = Math.ceil(totalCount / limit);
+
+    res.json({
+      treatments,
+      pagination: {
+        currentPage: page,
+        totalPages,
+        totalCount,
+        limit,
+        hasNextPage: page < totalPages,
+        hasPreviousPage: page > 1,
+      },
+    });
   } catch (error) {
     res.status(500).json({ message: "Error fetching treatment records" });
   }

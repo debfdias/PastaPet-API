@@ -102,6 +102,7 @@ model VaccineRecord {
   lotNumber          String?
   administeredBy     String? // Vet or clinic name
   notes              String?
+  booster            Boolean     @default(false)
   createdAt          DateTime    @default(now())
   updatedAt          DateTime    @updatedAt
 

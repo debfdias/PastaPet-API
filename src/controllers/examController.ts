@@ -69,6 +69,19 @@ export const getExamsByPet = async (req: AuthRequest, res: Response) => {
         .json({ message: "Pet not found or not owned by user" });
     }
 
+    // Parse pagination parameters
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 10;
+    const skip = (page - 1) * limit;
+
+    // Get total count for pagination metadata
+    const totalCount = await prisma.exam.count({
+      where: {
+        petId,
+      },
+    });
+
+    // Fetch paginated exams
     const exams = await prisma.exam.findMany({
       where: {
         petId,
@@ -76,9 +89,23 @@ export const getExamsByPet = async (req: AuthRequest, res: Response) => {
       orderBy: {
         createdAt: "desc",
       },
+      skip,
+      take: limit,
     });
 
-    res.json(exams);
+    const totalPages = Math.ceil(totalCount / limit);
+
+    res.json({
+      exams,
+      pagination: {
+        currentPage: page,
+        totalPages,
+        totalCount,
+        limit,
+        hasNextPage: page < totalPages,
+        hasPreviousPage: page > 1,
+      },
+    });
   } catch (error) {
     res.status(500).json({ message: "Error fetching exam records" });
   }
