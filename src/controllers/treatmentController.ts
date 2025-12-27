@@ -77,6 +77,12 @@ export const createTreatment = async (req: AuthRequest, res: Response) => {
       });
     });
 
+    if (!treatment) {
+      return res
+        .status(500)
+        .json({ message: "Error creating treatment record" });
+    }
+
     // Create reminders AFTER transaction completes (to avoid timeout)
     // Wrap in try-catch so reminder failures don't break the response
     try {
