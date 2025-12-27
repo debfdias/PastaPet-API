@@ -53,49 +53,19 @@ export const createTreatment = async (req: AuthRequest, res: Response) => {
         },
       });
 
-      // Create daily reminders for treatment period
-      await createTreatmentReminders(
-        newTreatment.id,
-        petId,
-        userId,
-        newTreatment.startDate,
-        newTreatment.endDate,
-        cause
-      );
-
       // Create medications if provided
       if (medications && medications.length > 0) {
-        const createdMedications = await Promise.all(
-          medications.map(async (med: any) => {
-            const medication = await tx.medication.create({
-              data: {
-                treatmentId: newTreatment.id,
-                name: med.name,
-                dosage: med.dosage,
-                frequency: med.frequency,
-                notes: med.notes,
-                startDate: new Date(med.startDate),
-                endDate: med.endDate ? new Date(med.endDate) : null,
-              },
-            });
-
-            // Create medication reminders based on frequency
-            await createMedicationReminders(
-              medication.id,
-              newTreatment.id,
-              petId,
-              userId,
-              medication.name,
-              medication.dosage,
-              medication.frequency,
-              medication.startDate,
-              medication.endDate,
-              newTreatment.endDate
-            );
-
-            return medication;
-          })
-        );
+        await tx.medication.createMany({
+          data: medications.map((med: any) => ({
+            treatmentId: newTreatment.id,
+            name: med.name,
+            dosage: med.dosage,
+            frequency: med.frequency,
+            notes: med.notes,
+            startDate: new Date(med.startDate),
+            endDate: med.endDate ? new Date(med.endDate) : null,
+          })),
+        });
       }
 
       // Return treatment with medications
@@ -106,6 +76,45 @@ export const createTreatment = async (req: AuthRequest, res: Response) => {
         },
       });
     });
+
+    // Create reminders AFTER transaction completes (to avoid timeout)
+    // Wrap in try-catch so reminder failures don't break the response
+    try {
+      // Create treatment reminder
+      await createTreatmentReminders(
+        treatment.id,
+        petId,
+        userId,
+        treatment.startDate,
+        treatment.endDate,
+        cause
+      );
+
+      // Create medication reminders
+      if (treatment.medications && treatment.medications.length > 0) {
+        for (const medication of treatment.medications) {
+          await createMedicationReminders(
+            medication.id,
+            treatment.id,
+            petId,
+            userId,
+            medication.name,
+            medication.dosage,
+            medication.frequency,
+            medication.startDate,
+            medication.endDate,
+            treatment.endDate
+          );
+        }
+      }
+    } catch (reminderError) {
+      // Log error but don't fail the request - treatment is already created
+      console.error(
+        "Error creating reminders for treatment:",
+        treatment.id,
+        reminderError
+      );
+    }
 
     res.status(201).json(treatment);
   } catch (error) {

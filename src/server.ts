@@ -20,7 +20,7 @@ const port = process.env.PORT || 3000;
 app.use(
   cors({
     origin: process.env.CORS_ORIGIN || "*", // Allow all origins if CORS_ORIGIN is not set
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })

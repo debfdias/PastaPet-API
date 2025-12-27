@@ -85,9 +85,15 @@ export const getAllReminders = async (req: AuthRequest, res: Response) => {
       ? req.query.isUnread === "true"
       : undefined;
 
+    // Only show reminders from current date onwards
+    const now = new Date();
+
     // Build where clause
     const where: any = {
       userId,
+      reminderDate: {
+        gte: now, // Greater than or equal to current date
+      },
       ...(petId && { petId }),
       ...(reminderType && { reminderType }),
       ...(isCompleted !== undefined && { isCompleted }),
@@ -102,6 +108,14 @@ export const getAllReminders = async (req: AuthRequest, res: Response) => {
     // Fetch paginated reminders
     const reminders = await prisma.reminder.findMany({
       where,
+      include: {
+        pet: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
       orderBy: {
         reminderDate: "asc",
       },
@@ -162,10 +176,16 @@ export const getRemindersByPet = async (req: AuthRequest, res: Response) => {
       : undefined;
     const priority = req.query.priority as NoteSeverity | undefined;
 
+    // Only show reminders from current date onwards
+    const now = new Date();
+
     // Build where clause
     const where: any = {
       userId,
       petId,
+      reminderDate: {
+        gte: now, // Greater than or equal to current date
+      },
       ...(reminderType && { reminderType }),
       ...(isCompleted !== undefined && { isCompleted }),
       ...(priority && { priority }),
