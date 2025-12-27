@@ -1,6 +1,12 @@
 import { Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import { AuthRequest } from "../middleware/auth";
+import {
+  createTreatmentReminders,
+  createMedicationReminders,
+  deleteRelatedReminders,
+  deleteMedicationReminders,
+} from "../utils/reminderHelpers";
 
 const prisma = new PrismaClient();
 
@@ -47,19 +53,49 @@ export const createTreatment = async (req: AuthRequest, res: Response) => {
         },
       });
 
+      // Create daily reminders for treatment period
+      await createTreatmentReminders(
+        newTreatment.id,
+        petId,
+        userId,
+        newTreatment.startDate,
+        newTreatment.endDate,
+        cause
+      );
+
       // Create medications if provided
       if (medications && medications.length > 0) {
-        await tx.medication.createMany({
-          data: medications.map((med: any) => ({
-            treatmentId: newTreatment.id,
-            name: med.name,
-            dosage: med.dosage,
-            frequency: med.frequency,
-            notes: med.notes,
-            startDate: new Date(med.startDate),
-            endDate: med.endDate ? new Date(med.endDate) : null,
-          })),
-        });
+        const createdMedications = await Promise.all(
+          medications.map(async (med: any) => {
+            const medication = await tx.medication.create({
+              data: {
+                treatmentId: newTreatment.id,
+                name: med.name,
+                dosage: med.dosage,
+                frequency: med.frequency,
+                notes: med.notes,
+                startDate: new Date(med.startDate),
+                endDate: med.endDate ? new Date(med.endDate) : null,
+              },
+            });
+
+            // Create medication reminders based on frequency
+            await createMedicationReminders(
+              medication.id,
+              newTreatment.id,
+              petId,
+              userId,
+              medication.name,
+              medication.dosage,
+              medication.frequency,
+              medication.startDate,
+              medication.endDate,
+              newTreatment.endDate
+            );
+
+            return medication;
+          })
+        );
       }
 
       // Return treatment with medications
@@ -217,6 +253,21 @@ export const updateTreatment = async (req: AuthRequest, res: Response) => {
       },
     });
 
+    // Update treatment reminders if dates changed
+    if (startDate || endDate !== undefined) {
+      // Delete old treatment reminders
+      await deleteRelatedReminders(id, "treatment");
+      // Create new reminders
+      await createTreatmentReminders(
+        id,
+        updatedTreatment.petId,
+        userId,
+        updatedTreatment.startDate,
+        updatedTreatment.endDate,
+        updatedTreatment.cause
+      );
+    }
+
     res.json(updatedTreatment);
   } catch (error) {
     res.status(500).json({ message: "Error updating treatment record" });
@@ -245,6 +296,19 @@ export const deleteTreatment = async (req: AuthRequest, res: Response) => {
     if (!existingTreatment) {
       return res.status(404).json({ message: "Treatment record not found" });
     }
+
+    // Get medications before deletion to delete their reminders
+    const medications = await prisma.medication.findMany({
+      where: { treatmentId: id },
+    });
+
+    // Delete medication reminders
+    for (const medication of medications) {
+      await deleteMedicationReminders(medication.id);
+    }
+
+    // Delete treatment reminders
+    await deleteRelatedReminders(id, "treatment");
 
     // Delete treatment (this will cascade delete medications due to the relation)
     await prisma.treatment.delete({

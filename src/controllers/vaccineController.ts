@@ -1,6 +1,7 @@
 import { Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import { AuthRequest } from "../middleware/auth";
+import { createVaccineBoosterReminder } from "../utils/reminderHelpers";
 
 const prisma = new PrismaClient();
 
@@ -53,6 +54,17 @@ export const createVaccineRecord = async (req: AuthRequest, res: Response) => {
         vaccineType: true,
       },
     });
+
+    // Create reminder if booster is true and nextDueDate exists
+    if (!vaccineRecord.booster && vaccineRecord.nextDueDate) {
+      await createVaccineBoosterReminder(
+        vaccineRecord.id,
+        petId,
+        userId,
+        vaccineRecord.nextDueDate,
+        vaccineRecord.vaccineType.name
+      );
+    }
 
     res.status(201).json(vaccineRecord);
   } catch (error) {
@@ -212,6 +224,33 @@ export const updateVaccineRecord = async (req: AuthRequest, res: Response) => {
         vaccineType: true,
       },
     });
+
+    // Update reminder if booster status or nextDueDate changed
+    if (!updatedVaccineRecord.booster && updatedVaccineRecord.nextDueDate) {
+      // Delete old reminder if exists
+      await prisma.reminder.deleteMany({
+        where: {
+          relatedRecordId: id,
+          relatedRecordType: "vaccine",
+        },
+      });
+      // Create new reminder
+      await createVaccineBoosterReminder(
+        updatedVaccineRecord.id,
+        updatedVaccineRecord.petId,
+        userId,
+        updatedVaccineRecord.nextDueDate,
+        updatedVaccineRecord.vaccineType.name
+      );
+    } else if (!updatedVaccineRecord.booster) {
+      // Delete reminder if booster is false
+      await prisma.reminder.deleteMany({
+        where: {
+          relatedRecordId: id,
+          relatedRecordType: "vaccine",
+        },
+      });
+    }
 
     res.json(updatedVaccineRecord);
   } catch (error) {

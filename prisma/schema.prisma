@@ -9,15 +9,16 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
+  id        String     @id @default(uuid())
   fullName  String
-  email     String   @unique
+  email     String     @unique
   password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
   pets      Pet[]
   notes     Note[]
   events    Event[]
+  reminders Reminder[]
 }
 
 model Pet {
@@ -43,6 +44,7 @@ model Pet {
   VaccineRecord         VaccineRecord[]
   Exam                  Exam[]
   Treatment             Treatment[]
+  reminders             Reminder[]
 }
 
 enum PetType {
@@ -60,6 +62,15 @@ enum NoteSeverity {
   LOW
   MEDIUM
   HIGH
+}
+
+enum ReminderType {
+  VACCINE_BOOSTER
+  VET_APPOINTMENT
+  EXAM
+  TREATMENT_FOLLOWUP
+  MEDICATION
+  CUSTOM
 }
 
 model Note {
@@ -170,4 +181,31 @@ model Medication {
   endDate     DateTime?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+}
+
+model Reminder {
+  id                String       @id @default(uuid())
+  title             String
+  description       String?
+  reminderDate      DateTime
+  priority          NoteSeverity  @default(MEDIUM)
+  reminderType      ReminderType
+  isCompleted       Boolean       @default(false)
+  completedAt       DateTime?
+  viewedAt          DateTime? // When user viewed/acknowledged the notification
+  relatedRecordId   String? // ID of related VaccineRecord, Exam, Treatment, or Event
+  relatedRecordType String? // "vaccine", "exam", "treatment", "event", "medication"
+  medicationId      String? // Direct reference to Medication for medication reminders
+  user              User         @relation(fields: [userId], references: [id])
+  userId            String
+  pet               Pet?         @relation(fields: [petId], references: [id])
+  petId             String?
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+
+  @@index([userId])
+  @@index([petId])
+  @@index([reminderDate])
+  @@index([isCompleted])
+  @@index([medicationId])
 }
