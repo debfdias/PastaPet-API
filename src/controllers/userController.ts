@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
+import { randomUUID } from "crypto";
+import { sendVerificationEmail } from "../services/emailService";
 
 const prisma = new PrismaClient();
 
@@ -20,14 +22,29 @@ export const createUser = async (req: Request, res: Response) => {
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    const verificationToken = randomUUID();
+    const verificationTokenExpires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24h
+
     // Create user
     const user = await prisma.user.create({
       data: {
         fullName,
         email,
         password: hashedPassword,
+        isVerified: false,
+        verificationToken,
+        verificationTokenExpires,
       },
     });
+
+    const apiBaseUrl = process.env.API_BASE_URL || "http://localhost:3000/api";
+    const verificationLink = `${apiBaseUrl}/auth/verify?token=${verificationToken}`;
+
+    try {
+      await sendVerificationEmail(email, verificationLink, fullName);
+    } catch (emailError) {
+      console.error("Failed to send verification email:", emailError);
+    }
 
     // Remove password from response
     const { password: _, ...userWithoutPassword } = user;
