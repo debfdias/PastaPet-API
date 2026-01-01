@@ -63,7 +63,9 @@ async function processReminder(reminder: any) {
     // - Create in-app notification
 
     console.log(
-      `[Reminder] Processing reminder: ${reminder.title} for pet: ${reminder.pet?.name || "N/A"}`
+      `[Reminder] Processing reminder: ${reminder.title} for pet: ${
+        reminder.pet?.name || "N/A"
+      }`
     );
 
     // Example: You could mark reminders as "notified" with a new field
@@ -104,5 +106,3 @@ export async function getDueReminders() {
     },
   });
 }
-
-

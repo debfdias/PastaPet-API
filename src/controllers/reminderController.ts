@@ -85,14 +85,16 @@ export const getAllReminders = async (req: AuthRequest, res: Response) => {
       ? req.query.isUnread === "true"
       : undefined;
 
-    // Only show reminders from current date onwards
+    // Show reminders from start of current month onwards
     const now = new Date();
+    const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+    startOfMonth.setHours(0, 0, 0, 0);
 
     // Build where clause
     const where: any = {
       userId,
       reminderDate: {
-        gte: now, // Greater than or equal to current date
+        gte: startOfMonth, // From start of current month
       },
       ...(petId && { petId }),
       ...(reminderType && { reminderType }),
@@ -176,15 +178,17 @@ export const getRemindersByPet = async (req: AuthRequest, res: Response) => {
       : undefined;
     const priority = req.query.priority as NoteSeverity | undefined;
 
-    // Only show reminders from current date onwards
+    // Show reminders from start of current month onwards
     const now = new Date();
+    const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+    startOfMonth.setHours(0, 0, 0, 0);
 
     // Build where clause
     const where: any = {
       userId,
       petId,
       reminderDate: {
-        gte: now, // Greater than or equal to current date
+        gte: startOfMonth, // From start of current month
       },
       ...(reminderType && { reminderType }),
       ...(isCompleted !== undefined && { isCompleted }),
