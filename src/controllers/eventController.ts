@@ -84,7 +84,7 @@ export const getEventsByPet = async (req: AuthRequest, res: Response) => {
         petId,
       },
       orderBy: {
-        createdAt: "desc",
+        eventDate: "desc",
       },
       skip,
       take: limit,
