@@ -150,6 +150,7 @@ model Exam {
   administeredBy String?
   fileUrl        String?
   resultSummary  String?
+  examDate       DateTime   @default(now())
   createdAt      DateTime   @default(now())
   updatedAt      DateTime   @updatedAt
   treatment      Treatment? @relation("TreatmentExams", fields: [treatmentId], references: [id])

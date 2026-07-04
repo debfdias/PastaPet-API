@@ -6,8 +6,15 @@ const prisma = new PrismaClient();
 
 export const createExam = async (req: AuthRequest, res: Response) => {
   try {
-    const { petId, title, cause, administeredBy, fileUrl, resultSummary } =
-      req.body;
+    const {
+      petId,
+      title,
+      cause,
+      administeredBy,
+      fileUrl,
+      resultSummary,
+      examDate,
+    } = req.body;
     const userId = req.user?.userId;
 
     if (!userId) {
@@ -36,6 +43,7 @@ export const createExam = async (req: AuthRequest, res: Response) => {
         administeredBy,
         fileUrl,
         resultSummary,
+        ...(examDate && { examDate: new Date(examDate) }),
       },
     });
 
@@ -142,7 +150,8 @@ export const getExamById = async (req: AuthRequest, res: Response) => {
 export const updateExam = async (req: AuthRequest, res: Response) => {
   try {
     const { id } = req.params;
-    const { title, cause, administeredBy, fileUrl, resultSummary } = req.body;
+    const { title, cause, administeredBy, fileUrl, resultSummary, examDate } =
+      req.body;
     const userId = req.user?.userId;
 
     if (!userId) {
@@ -171,6 +180,7 @@ export const updateExam = async (req: AuthRequest, res: Response) => {
         administeredBy,
         fileUrl,
         resultSummary,
+        ...(examDate && { examDate: new Date(examDate) }),
       },
     });
 
