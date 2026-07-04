@@ -209,7 +209,10 @@ export const getActiveTreatments = async (req: AuthRequest, res: Response) => {
       return res.status(401).json({ message: "User not authenticated" });
     }
 
-    const limit = parseInt(req.query.limit as string) || 3;
+    // limit is optional: when omitted, return every pet under treatment
+    // (used by the dashboard to populate its "view all" modal).
+    const limitParam = req.query.limit as string | undefined;
+    const limit = limitParam ? parseInt(limitParam) : undefined;
     const now = new Date();
 
     const treatments = await prisma.treatment.findMany({
@@ -224,12 +227,15 @@ export const getActiveTreatments = async (req: AuthRequest, res: Response) => {
     });
 
     // Group by pet, preserving first-seen order, counting active treatments.
+    // Treatments are ordered by startDate desc, so the first one seen for a pet
+    // is its most recent active treatment — use its cause as the row's reason.
     const petsMap = new Map<
       string,
       {
         id: string;
         name: string;
         image: string | null;
+        cause: string;
         activeTreatmentCount: number;
       }
     >();
@@ -243,6 +249,7 @@ export const getActiveTreatments = async (req: AuthRequest, res: Response) => {
           id: treatment.pet.id,
           name: treatment.pet.name,
           image: treatment.pet.image,
+          cause: treatment.cause,
           activeTreatmentCount: 1,
         });
       }
@@ -251,7 +258,7 @@ export const getActiveTreatments = async (req: AuthRequest, res: Response) => {
     const pets = Array.from(petsMap.values());
 
     res.json({
-      pets: pets.slice(0, limit),
+      pets: limit ? pets.slice(0, limit) : pets,
       totalCount: pets.length,
     });
   } catch (error) {

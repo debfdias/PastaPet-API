@@ -53,11 +53,13 @@ export const createPet = async (req: AuthRequest, res: Response) => {
 export const getPets = async (req: AuthRequest, res: Response) => {
   try {
     const userId = req.user?.userId;
-    const { type, name, orderByAge } = req.query;
+    const { type, name, orderByAge, underTreatment } = req.query;
 
     if (!userId) {
       return res.status(401).json({ message: "User not authenticated" });
     }
+
+    const now = new Date();
 
     const pets = await prisma.pet.findMany({
       where: {
@@ -66,6 +68,16 @@ export const getPets = async (req: AuthRequest, res: Response) => {
         ...(type ? { type: type as PetType } : {}),
         ...(name
           ? { name: { contains: name as string, mode: "insensitive" } }
+          : {}),
+        // Only pets with at least one ongoing/open-ended treatment
+        ...(underTreatment === "true"
+          ? {
+              Treatment: {
+                some: {
+                  OR: [{ endDate: null }, { endDate: { gte: now } }],
+                },
+              },
+            }
           : {}),
       },
       orderBy: {
