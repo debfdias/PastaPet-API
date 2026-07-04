@@ -198,6 +198,67 @@ export const getTreatmentsByPet = async (req: AuthRequest, res: Response) => {
   }
 };
 
+// Returns the user's pets that are currently under treatment, i.e. have at least
+// one ongoing/open-ended treatment (endDate is null or still in the future),
+// grouped by pet with a count of active treatments.
+export const getActiveTreatments = async (req: AuthRequest, res: Response) => {
+  try {
+    const userId = req.user?.userId;
+
+    if (!userId) {
+      return res.status(401).json({ message: "User not authenticated" });
+    }
+
+    const limit = parseInt(req.query.limit as string) || 3;
+    const now = new Date();
+
+    const treatments = await prisma.treatment.findMany({
+      where: {
+        pet: { userId, active: true },
+        OR: [{ endDate: null }, { endDate: { gte: now } }],
+      },
+      include: {
+        pet: { select: { id: true, name: true, image: true } },
+      },
+      orderBy: { startDate: "desc" },
+    });
+
+    // Group by pet, preserving first-seen order, counting active treatments.
+    const petsMap = new Map<
+      string,
+      {
+        id: string;
+        name: string;
+        image: string | null;
+        activeTreatmentCount: number;
+      }
+    >();
+
+    for (const treatment of treatments) {
+      const existing = petsMap.get(treatment.pet.id);
+      if (existing) {
+        existing.activeTreatmentCount += 1;
+      } else {
+        petsMap.set(treatment.pet.id, {
+          id: treatment.pet.id,
+          name: treatment.pet.name,
+          image: treatment.pet.image,
+          activeTreatmentCount: 1,
+        });
+      }
+    }
+
+    const pets = Array.from(petsMap.values());
+
+    res.json({
+      pets: pets.slice(0, limit),
+      totalCount: pets.length,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching active treatments" });
+  }
+};
+
 export const getTreatmentById = async (req: AuthRequest, res: Response) => {
   try {
     const { id } = req.params;
