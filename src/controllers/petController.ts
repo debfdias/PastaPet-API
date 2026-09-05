@@ -1,5 +1,5 @@
 import { Response } from "express";
-import { PrismaClient, PetType, PetGender } from "@prisma/client";
+import { PrismaClient, PetType, PetGender, FivFelvStatus } from "@prisma/client";
 import { AuthRequest } from "../middleware/auth";
 
 const prisma = new PrismaClient();
@@ -18,6 +18,8 @@ export const createPet = async (req: AuthRequest, res: Response) => {
       petPlanName,
       hasFuneraryPlan,
       funeraryPlanStartDate,
+      fivStatus,
+      felvStatus,
     } = req.body;
     const userId = req.user?.userId;
 
@@ -40,6 +42,8 @@ export const createPet = async (req: AuthRequest, res: Response) => {
         funeraryPlanStartDate: funeraryPlanStartDate
           ? new Date(funeraryPlanStartDate)
           : undefined,
+        ...(fivStatus && { fivStatus: fivStatus as FivFelvStatus }),
+        ...(felvStatus && { felvStatus: felvStatus as FivFelvStatus }),
       },
     });
 
@@ -135,6 +139,8 @@ export const updatePet = async (req: AuthRequest, res: Response) => {
       petPlanName,
       hasFuneraryPlan,
       funeraryPlanStartDate,
+      fivStatus,
+      felvStatus,
     } = req.body;
 
     if (!userId) {
@@ -170,6 +176,10 @@ export const updatePet = async (req: AuthRequest, res: Response) => {
           funeraryPlanStartDate: funeraryPlanStartDate
             ? new Date(funeraryPlanStartDate)
             : null,
+        }),
+        ...(fivStatus !== undefined && { fivStatus: fivStatus as FivFelvStatus }),
+        ...(felvStatus !== undefined && {
+          felvStatus: felvStatus as FivFelvStatus,
         }),
       },
     });
