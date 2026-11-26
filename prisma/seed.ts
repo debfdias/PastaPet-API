@@ -1,4 +1,24 @@
+import bcrypt from "bcryptjs";
 import { prisma } from "../src/lib/prisma";
+
+// Verified demo accounts so the app can be used locally without email verification.
+const DEMO_PASSWORD = "pastapet123";
+const DEMO_USERS = [
+  { email: "owner@pastapet.local", fullName: "Demo Owner" },
+  { email: "second@pastapet.local", fullName: "Demo Second User" },
+];
+
+async function seedDemoUsers() {
+  const password = await bcrypt.hash(DEMO_PASSWORD, 10);
+  for (const u of DEMO_USERS) {
+    await prisma.user.upsert({
+      where: { email: u.email },
+      update: { isVerified: true },
+      create: { ...u, password, isVerified: true },
+    });
+  }
+  console.log(`✅ Demo users ready (password: ${DEMO_PASSWORD})`);
+}
 
 
 async function main() {
@@ -114,6 +134,8 @@ async function main() {
   });
 
   console.log("✅ Tipos de vacinas inseridos com sucesso!");
+
+  await seedDemoUsers();
 }
 
 main()
