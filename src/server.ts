@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "./lib/prisma";
 import userRoutes from "./routes/userRoutes";
 import authRoutes from "./routes/authRoutes";
 import petRoutes from "./routes/petRoutes";
@@ -13,7 +13,6 @@ import reminderRoutes from "./routes/reminderRoutes";
 import { startReminderCron } from "./jobs/reminderCron";
 
 export const app = express();
-const prisma = new PrismaClient();
 const port = process.env.PORT || 3000;
 
 // Middleware

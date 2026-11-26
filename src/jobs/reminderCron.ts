@@ -1,7 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../lib/prisma";
 import cron from "node-cron";
 
-const prisma = new PrismaClient();
 
 /**
  * Check for upcoming reminders and send notifications

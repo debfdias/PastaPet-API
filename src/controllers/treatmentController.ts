@@ -1,5 +1,5 @@
 import { Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../lib/prisma";
 import { AuthRequest } from "../middleware/auth";
 import {
   createTreatmentReminders,
@@ -8,7 +8,6 @@ import {
   deleteMedicationReminders,
 } from "../utils/reminderHelpers";
 
-const prisma = new PrismaClient();
 
 export const createTreatment = async (req: AuthRequest, res: Response) => {
   try {

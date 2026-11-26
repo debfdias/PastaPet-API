@@ -1,8 +1,8 @@
 import { Response } from "express";
-import { PrismaClient, NoteSeverity, ReminderType } from "@prisma/client";
+import { prisma } from "../lib/prisma";
+import { NoteSeverity, ReminderType } from "../generated/prisma/client";
 import { AuthRequest } from "../middleware/auth";
 
-const prisma = new PrismaClient();
 
 export const createReminder = async (req: AuthRequest, res: Response) => {
   try {

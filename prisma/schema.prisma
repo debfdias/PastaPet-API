@@ -1,30 +1,29 @@
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "postgresql"
 }
 
 model User {
-  id        String     @id @default(uuid())
-  fullName  String
-  email     String     @unique
-  password  String
-  isVerified Boolean    @default(false)
-  verificationToken String? @unique
-  verificationTokenExpires DateTime?
-  passwordResetToken String?
+  id                        String     @id @default(uuid())
+  fullName                  String
+  email                     String     @unique
+  password                  String
+  isVerified                Boolean    @default(false)
+  verificationToken         String?    @unique
+  verificationTokenExpires  DateTime?
+  passwordResetToken        String?
   passwordResetTokenExpires DateTime?
-  passwordResetTokenUsed Boolean @default(false)
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  pets      Pet[]
-  notes     Note[]
-  events    Event[]
-  reminders Reminder[]
+  passwordResetTokenUsed    Boolean    @default(false)
+  createdAt                 DateTime   @default(now())
+  updatedAt                 DateTime   @updatedAt
+  pets                      Pet[]
+  notes                     Note[]
+  events                    Event[]
+  reminders                 Reminder[]
 }
 
 model Pet {
@@ -204,9 +203,9 @@ model Reminder {
   title             String
   description       String?
   reminderDate      DateTime
-  priority          NoteSeverity  @default(MEDIUM)
+  priority          NoteSeverity @default(MEDIUM)
   reminderType      ReminderType
-  isCompleted       Boolean       @default(false)
+  isCompleted       Boolean      @default(false)
   completedAt       DateTime?
   viewedAt          DateTime? // When user viewed/acknowledged the notification
   relatedRecordId   String? // ID of related VaccineRecord, Exam, Treatment, or Event

@@ -2,7 +2,7 @@ import request from "supertest";
 import { app } from "../server";
 import { prisma } from "./setup";
 import jwt from "jsonwebtoken";
-import { PetType, PetGender } from "@prisma/client";
+import { PetType, PetGender } from "../generated/prisma/client";
 import bcrypt from "bcryptjs";
 
 describe("Pet Routes", () => {
@@ -107,6 +107,7 @@ describe("Pet Routes", () => {
       breed: "Golden Retriever",
       dob: new Date("2022-01-01"),
       weight: 30.0,
+      gender: PetGender.MALE,
     };
 
     it("should create a new pet", async () => {

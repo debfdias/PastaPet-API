@@ -1,9 +1,8 @@
 import { Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../lib/prisma";
 import { AuthRequest } from "../middleware/auth";
 import { createVaccineBoosterReminder } from "../utils/reminderHelpers";
 
-const prisma = new PrismaClient();
 
 export const createVaccineRecord = async (req: AuthRequest, res: Response) => {
   try {

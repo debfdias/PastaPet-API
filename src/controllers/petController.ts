@@ -1,8 +1,8 @@
 import { Response } from "express";
-import { PrismaClient, PetType, PetGender, FivFelvStatus } from "@prisma/client";
+import { prisma } from "../lib/prisma";
+import { PetType, PetGender, FivFelvStatus } from "../generated/prisma/client";
 import { AuthRequest } from "../middleware/auth";
 
-const prisma = new PrismaClient();
 
 export const createPet = async (req: AuthRequest, res: Response) => {
   try {
@@ -26,6 +26,13 @@ export const createPet = async (req: AuthRequest, res: Response) => {
     if (!userId) {
       return res.status(401).json({ message: "User not authenticated" });
     }
+
+    if (!name || !type || !dob || weight === undefined || weight === null) {
+      return res
+        .status(400)
+        .json({ message: "name, type, dob and weight are required" });
+    }
+
     const pet = await prisma.pet.create({
       data: {
         name,

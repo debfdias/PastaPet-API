@@ -1,10 +1,9 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../lib/prisma";
 import bcrypt from "bcryptjs";
 import { randomUUID } from "crypto";
 import { sendVerificationEmail } from "../services/emailService";
 
-const prisma = new PrismaClient();
 
 export const createUser = async (req: Request, res: Response) => {
   try {

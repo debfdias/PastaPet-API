@@ -18,6 +18,7 @@ describe("Auth Routes", () => {
           email: testUser.email,
           password: hashedPassword,
           fullName: testUser.fullName,
+          isVerified: true,
         },
       });
 

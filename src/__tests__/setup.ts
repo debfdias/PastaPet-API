@@ -1,7 +1,7 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../lib/prisma";
+export { prisma };
 import { app } from "../server";
 
-export const prisma = new PrismaClient();
 
 beforeAll(async () => {
   // Connect to the test database

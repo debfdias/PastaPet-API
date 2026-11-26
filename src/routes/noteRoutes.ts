@@ -1,5 +1,6 @@
 import { Router, Request } from "express";
-import { PrismaClient, NoteSeverity } from "@prisma/client";
+import { prisma } from "../lib/prisma";
+import { NoteSeverity } from "../generated/prisma/client";
 import { authenticateToken } from "../middleware/auth";
 
 interface AuthenticatedRequest extends Request {
@@ -9,7 +10,6 @@ interface AuthenticatedRequest extends Request {
 }
 
 const router = Router();
-const prisma = new PrismaClient();
 
 // Create a new note
 router.post("/", authenticateToken, async (req: AuthenticatedRequest, res) => {
