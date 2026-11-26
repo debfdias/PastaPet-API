@@ -9,11 +9,30 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # Placeholder DB url so prisma.config.ts (which reads DIRECT_URL) loads.
-    # `prisma generate` and `tsc` never connect, so the value is unused.
+
+    # Throwaway Postgres for the integration tests. The suites TRUNCATE tables,
+    # so they must NEVER point at a real database — this one is isolated to the
+    # job and discarded when it finishes.
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: pastapet_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     env:
-      DIRECT_URL: postgresql://user:pass@localhost:5432/db
-      DATABASE_URL: postgresql://user:pass@localhost:5432/db
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/pastapet_test
+      DIRECT_URL: postgresql://postgres:postgres@localhost:5432/pastapet_test
+      JWT_SECRET: test-secret
+
     steps:
       - uses: actions/checkout@v4
 
@@ -31,8 +50,11 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Apply migrations to the test database
+        run: npm run migrate:deploy
+
       - name: Test
-        run: npm test -- --passWithNoTests
+        run: npm test
 
       # Informational for now (non-blocking): there is a known deferred
       # node-cron 3->4 breaking fix. Flip continue-on-error to false once the
