@@ -12,6 +12,12 @@ updates:
         update-types:
           - "minor"
           - "patch"
+    ignore:
+      # Express 5 types make req.params/req.query `string | string[]`, which
+      # breaks our Prisma where-clauses across every controller. Deferred to a
+      # deliberate migration PR; stay on @types/express 4.x until then.
+      - dependency-name: "@types/express"
+        update-types: ["version-update:semver-major"]
 
   # Keep the GitHub Actions used in CI up to date too.
   - package-ecosystem: "github-actions"
