@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # Placeholder DB url so prisma.config.ts (which reads DIRECT_URL) loads.
+    # `prisma generate` and `tsc` never connect, so the value is unused.
+    env:
+      DIRECT_URL: postgresql://user:pass@localhost:5432/db
+      DATABASE_URL: postgresql://user:pass@localhost:5432/db
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma client
+        run: npm run prisma:generate
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm test -- --passWithNoTests
+
+      # Informational for now (non-blocking): there is a known deferred
+      # node-cron 3->4 breaking fix. Flip continue-on-error to false once the
+      # audit is clean to make high/critical advisories block merges.
+      - name: Security audit
+        continue-on-error: true
+        run: npm audit --audit-level=high
