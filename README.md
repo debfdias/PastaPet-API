@@ -25,15 +25,15 @@ A Node.js API built with TypeScript, Express, Prisma ORM, and JWT authentication
    PORT=3000
    ```
 
-4. Run Prisma migrations:
+4. Run Prisma migrations (local dev):
 
    ```bash
-   npx prisma migrate dev
+   npm run migrate:dev
    ```
 
 5. Generate Prisma client:
    ```bash
-   npx prisma generate
+   npm run prisma:generate
    ```
 
 ## Running the Application
@@ -50,6 +50,35 @@ Production mode:
 npm run build
 npm start
 ```
+
+## Database migrations
+
+Migration history is tracked by Prisma in the `_prisma_migrations` table.
+The datasource URL for migrations is read from `DIRECT_URL` (see
+`prisma.config.ts`).
+
+- **Create a migration (local dev):** `npm run migrate:dev` — edits the schema,
+  generates a new migration under `prisma/migrations/`, applies it to your dev
+  DB, and regenerates the client.
+- **Apply pending migrations (production):** `npm run migrate:deploy` — applies
+  only unapplied migrations. Never use `migrate:dev` against production.
+- **Check state:** `npm run migrate:status` — lists applied vs. pending
+  migrations (read-only).
+
+### Deploys (Render)
+
+Schema changes are **not** applied by pushing code — the deploy must run the
+migration step. This is wired up as the Render service's **Pre-Deploy Command**:
+
+```
+npm run migrate:deploy
+```
+
+It runs after the build succeeds and before the new version takes traffic, so
+the database is always in sync with the deployed code. (`prisma` is a regular
+dependency so the CLI is present at deploy time.) If you add a migration, just
+push — Render applies it on deploy. To apply one out-of-band, run
+`npm run migrate:deploy` locally against the production `DIRECT_URL`.
 
 ## API Endpoints
 
