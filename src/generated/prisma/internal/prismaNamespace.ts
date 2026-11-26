@@ -1313,7 +1313,7 @@ export const ExamScalarFieldEnum = {
   title: 'title',
   cause: 'cause',
   administeredBy: 'administeredBy',
-  fileUrl: 'fileUrl',
+  fileUrls: 'fileUrls',
   resultSummary: 'resultSummary',
   examDate: 'examDate',
   createdAt: 'createdAt',

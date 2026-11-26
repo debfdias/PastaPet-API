@@ -156,7 +156,7 @@ model Exam {
   title          String
   cause          String
   administeredBy String?
-  fileUrl        String?
+  fileUrls       String[]   @default([])
   resultSummary  String?
   examDate       DateTime   @default(now())
   createdAt      DateTime   @default(now())

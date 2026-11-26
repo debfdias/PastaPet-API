@@ -30,7 +30,6 @@ export type ExamMinAggregateOutputType = {
   title: string | null
   cause: string | null
   administeredBy: string | null
-  fileUrl: string | null
   resultSummary: string | null
   examDate: Date | null
   createdAt: Date | null
@@ -44,7 +43,6 @@ export type ExamMaxAggregateOutputType = {
   title: string | null
   cause: string | null
   administeredBy: string | null
-  fileUrl: string | null
   resultSummary: string | null
   examDate: Date | null
   createdAt: Date | null
@@ -58,7 +56,7 @@ export type ExamCountAggregateOutputType = {
   title: number
   cause: number
   administeredBy: number
-  fileUrl: number
+  fileUrls: number
   resultSummary: number
   examDate: number
   createdAt: number
@@ -74,7 +72,6 @@ export type ExamMinAggregateInputType = {
   title?: true
   cause?: true
   administeredBy?: true
-  fileUrl?: true
   resultSummary?: true
   examDate?: true
   createdAt?: true
@@ -88,7 +85,6 @@ export type ExamMaxAggregateInputType = {
   title?: true
   cause?: true
   administeredBy?: true
-  fileUrl?: true
   resultSummary?: true
   examDate?: true
   createdAt?: true
@@ -102,7 +98,7 @@ export type ExamCountAggregateInputType = {
   title?: true
   cause?: true
   administeredBy?: true
-  fileUrl?: true
+  fileUrls?: true
   resultSummary?: true
   examDate?: true
   createdAt?: true
@@ -189,7 +185,7 @@ export type ExamGroupByOutputType = {
   title: string
   cause: string
   administeredBy: string | null
-  fileUrl: string | null
+  fileUrls: string[]
   resultSummary: string | null
   examDate: Date
   createdAt: Date
@@ -224,7 +220,7 @@ export type ExamWhereInput = {
   title?: Prisma.StringFilter<"Exam"> | string
   cause?: Prisma.StringFilter<"Exam"> | string
   administeredBy?: Prisma.StringNullableFilter<"Exam"> | string | null
-  fileUrl?: Prisma.StringNullableFilter<"Exam"> | string | null
+  fileUrls?: Prisma.StringNullableListFilter<"Exam">
   resultSummary?: Prisma.StringNullableFilter<"Exam"> | string | null
   examDate?: Prisma.DateTimeFilter<"Exam"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"Exam"> | Date | string
@@ -240,7 +236,7 @@ export type ExamOrderByWithRelationInput = {
   title?: Prisma.SortOrder
   cause?: Prisma.SortOrder
   administeredBy?: Prisma.SortOrderInput | Prisma.SortOrder
-  fileUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  fileUrls?: Prisma.SortOrder
   resultSummary?: Prisma.SortOrderInput | Prisma.SortOrder
   examDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -259,7 +255,7 @@ export type ExamWhereUniqueInput = Prisma.AtLeast<{
   title?: Prisma.StringFilter<"Exam"> | string
   cause?: Prisma.StringFilter<"Exam"> | string
   administeredBy?: Prisma.StringNullableFilter<"Exam"> | string | null
-  fileUrl?: Prisma.StringNullableFilter<"Exam"> | string | null
+  fileUrls?: Prisma.StringNullableListFilter<"Exam">
   resultSummary?: Prisma.StringNullableFilter<"Exam"> | string | null
   examDate?: Prisma.DateTimeFilter<"Exam"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"Exam"> | Date | string
@@ -275,7 +271,7 @@ export type ExamOrderByWithAggregationInput = {
   title?: Prisma.SortOrder
   cause?: Prisma.SortOrder
   administeredBy?: Prisma.SortOrderInput | Prisma.SortOrder
-  fileUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  fileUrls?: Prisma.SortOrder
   resultSummary?: Prisma.SortOrderInput | Prisma.SortOrder
   examDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -295,7 +291,7 @@ export type ExamScalarWhereWithAggregatesInput = {
   title?: Prisma.StringWithAggregatesFilter<"Exam"> | string
   cause?: Prisma.StringWithAggregatesFilter<"Exam"> | string
   administeredBy?: Prisma.StringNullableWithAggregatesFilter<"Exam"> | string | null
-  fileUrl?: Prisma.StringNullableWithAggregatesFilter<"Exam"> | string | null
+  fileUrls?: Prisma.StringNullableListFilter<"Exam">
   resultSummary?: Prisma.StringNullableWithAggregatesFilter<"Exam"> | string | null
   examDate?: Prisma.DateTimeWithAggregatesFilter<"Exam"> | Date | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Exam"> | Date | string
@@ -308,7 +304,7 @@ export type ExamCreateInput = {
   title: string
   cause: string
   administeredBy?: string | null
-  fileUrl?: string | null
+  fileUrls?: Prisma.ExamCreatefileUrlsInput | string[]
   resultSummary?: string | null
   examDate?: Date | string
   createdAt?: Date | string
@@ -323,7 +319,7 @@ export type ExamUncheckedCreateInput = {
   title: string
   cause: string
   administeredBy?: string | null
-  fileUrl?: string | null
+  fileUrls?: Prisma.ExamCreatefileUrlsInput | string[]
   resultSummary?: string | null
   examDate?: Date | string
   createdAt?: Date | string
@@ -336,7 +332,7 @@ export type ExamUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   cause?: Prisma.StringFieldUpdateOperationsInput | string
   administeredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileUrls?: Prisma.ExamUpdatefileUrlsInput | string[]
   resultSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -351,7 +347,7 @@ export type ExamUncheckedUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   cause?: Prisma.StringFieldUpdateOperationsInput | string
   administeredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileUrls?: Prisma.ExamUpdatefileUrlsInput | string[]
   resultSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -365,7 +361,7 @@ export type ExamCreateManyInput = {
   title: string
   cause: string
   administeredBy?: string | null
-  fileUrl?: string | null
+  fileUrls?: Prisma.ExamCreatefileUrlsInput | string[]
   resultSummary?: string | null
   examDate?: Date | string
   createdAt?: Date | string
@@ -378,7 +374,7 @@ export type ExamUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   cause?: Prisma.StringFieldUpdateOperationsInput | string
   administeredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileUrls?: Prisma.ExamUpdatefileUrlsInput | string[]
   resultSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -391,7 +387,7 @@ export type ExamUncheckedUpdateManyInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   cause?: Prisma.StringFieldUpdateOperationsInput | string
   administeredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileUrls?: Prisma.ExamUpdatefileUrlsInput | string[]
   resultSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -415,7 +411,7 @@ export type ExamCountOrderByAggregateInput = {
   title?: Prisma.SortOrder
   cause?: Prisma.SortOrder
   administeredBy?: Prisma.SortOrder
-  fileUrl?: Prisma.SortOrder
+  fileUrls?: Prisma.SortOrder
   resultSummary?: Prisma.SortOrder
   examDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -429,7 +425,6 @@ export type ExamMaxOrderByAggregateInput = {
   title?: Prisma.SortOrder
   cause?: Prisma.SortOrder
   administeredBy?: Prisma.SortOrder
-  fileUrl?: Prisma.SortOrder
   resultSummary?: Prisma.SortOrder
   examDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -443,7 +438,6 @@ export type ExamMinOrderByAggregateInput = {
   title?: Prisma.SortOrder
   cause?: Prisma.SortOrder
   administeredBy?: Prisma.SortOrder
-  fileUrl?: Prisma.SortOrder
   resultSummary?: Prisma.SortOrder
   examDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -493,6 +487,15 @@ export type ExamUncheckedUpdateManyWithoutPetNestedInput = {
   deleteMany?: Prisma.ExamScalarWhereInput | Prisma.ExamScalarWhereInput[]
 }
 
+export type ExamCreatefileUrlsInput = {
+  set: string[]
+}
+
+export type ExamUpdatefileUrlsInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
 export type ExamCreateNestedManyWithoutTreatmentInput = {
   create?: Prisma.XOR<Prisma.ExamCreateWithoutTreatmentInput, Prisma.ExamUncheckedCreateWithoutTreatmentInput> | Prisma.ExamCreateWithoutTreatmentInput[] | Prisma.ExamUncheckedCreateWithoutTreatmentInput[]
   connectOrCreate?: Prisma.ExamCreateOrConnectWithoutTreatmentInput | Prisma.ExamCreateOrConnectWithoutTreatmentInput[]
@@ -540,7 +543,7 @@ export type ExamCreateWithoutPetInput = {
   title: string
   cause: string
   administeredBy?: string | null
-  fileUrl?: string | null
+  fileUrls?: Prisma.ExamCreatefileUrlsInput | string[]
   resultSummary?: string | null
   examDate?: Date | string
   createdAt?: Date | string
@@ -553,7 +556,7 @@ export type ExamUncheckedCreateWithoutPetInput = {
   title: string
   cause: string
   administeredBy?: string | null
-  fileUrl?: string | null
+  fileUrls?: Prisma.ExamCreatefileUrlsInput | string[]
   resultSummary?: string | null
   examDate?: Date | string
   createdAt?: Date | string
@@ -596,7 +599,7 @@ export type ExamScalarWhereInput = {
   title?: Prisma.StringFilter<"Exam"> | string
   cause?: Prisma.StringFilter<"Exam"> | string
   administeredBy?: Prisma.StringNullableFilter<"Exam"> | string | null
-  fileUrl?: Prisma.StringNullableFilter<"Exam"> | string | null
+  fileUrls?: Prisma.StringNullableListFilter<"Exam">
   resultSummary?: Prisma.StringNullableFilter<"Exam"> | string | null
   examDate?: Prisma.DateTimeFilter<"Exam"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"Exam"> | Date | string
@@ -609,7 +612,7 @@ export type ExamCreateWithoutTreatmentInput = {
   title: string
   cause: string
   administeredBy?: string | null
-  fileUrl?: string | null
+  fileUrls?: Prisma.ExamCreatefileUrlsInput | string[]
   resultSummary?: string | null
   examDate?: Date | string
   createdAt?: Date | string
@@ -623,7 +626,7 @@ export type ExamUncheckedCreateWithoutTreatmentInput = {
   title: string
   cause: string
   administeredBy?: string | null
-  fileUrl?: string | null
+  fileUrls?: Prisma.ExamCreatefileUrlsInput | string[]
   resultSummary?: string | null
   examDate?: Date | string
   createdAt?: Date | string
@@ -661,7 +664,7 @@ export type ExamCreateManyPetInput = {
   title: string
   cause: string
   administeredBy?: string | null
-  fileUrl?: string | null
+  fileUrls?: Prisma.ExamCreatefileUrlsInput | string[]
   resultSummary?: string | null
   examDate?: Date | string
   createdAt?: Date | string
@@ -674,7 +677,7 @@ export type ExamUpdateWithoutPetInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   cause?: Prisma.StringFieldUpdateOperationsInput | string
   administeredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileUrls?: Prisma.ExamUpdatefileUrlsInput | string[]
   resultSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -687,7 +690,7 @@ export type ExamUncheckedUpdateWithoutPetInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   cause?: Prisma.StringFieldUpdateOperationsInput | string
   administeredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileUrls?: Prisma.ExamUpdatefileUrlsInput | string[]
   resultSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -700,7 +703,7 @@ export type ExamUncheckedUpdateManyWithoutPetInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   cause?: Prisma.StringFieldUpdateOperationsInput | string
   administeredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileUrls?: Prisma.ExamUpdatefileUrlsInput | string[]
   resultSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -714,7 +717,7 @@ export type ExamCreateManyTreatmentInput = {
   title: string
   cause: string
   administeredBy?: string | null
-  fileUrl?: string | null
+  fileUrls?: Prisma.ExamCreatefileUrlsInput | string[]
   resultSummary?: string | null
   examDate?: Date | string
   createdAt?: Date | string
@@ -726,7 +729,7 @@ export type ExamUpdateWithoutTreatmentInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   cause?: Prisma.StringFieldUpdateOperationsInput | string
   administeredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileUrls?: Prisma.ExamUpdatefileUrlsInput | string[]
   resultSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -740,7 +743,7 @@ export type ExamUncheckedUpdateWithoutTreatmentInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   cause?: Prisma.StringFieldUpdateOperationsInput | string
   administeredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileUrls?: Prisma.ExamUpdatefileUrlsInput | string[]
   resultSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -753,7 +756,7 @@ export type ExamUncheckedUpdateManyWithoutTreatmentInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   cause?: Prisma.StringFieldUpdateOperationsInput | string
   administeredBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  fileUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileUrls?: Prisma.ExamUpdatefileUrlsInput | string[]
   resultSummary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   examDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -768,7 +771,7 @@ export type ExamSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   title?: boolean
   cause?: boolean
   administeredBy?: boolean
-  fileUrl?: boolean
+  fileUrls?: boolean
   resultSummary?: boolean
   examDate?: boolean
   createdAt?: boolean
@@ -784,7 +787,7 @@ export type ExamSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   title?: boolean
   cause?: boolean
   administeredBy?: boolean
-  fileUrl?: boolean
+  fileUrls?: boolean
   resultSummary?: boolean
   examDate?: boolean
   createdAt?: boolean
@@ -800,7 +803,7 @@ export type ExamSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   title?: boolean
   cause?: boolean
   administeredBy?: boolean
-  fileUrl?: boolean
+  fileUrls?: boolean
   resultSummary?: boolean
   examDate?: boolean
   createdAt?: boolean
@@ -816,7 +819,7 @@ export type ExamSelectScalar = {
   title?: boolean
   cause?: boolean
   administeredBy?: boolean
-  fileUrl?: boolean
+  fileUrls?: boolean
   resultSummary?: boolean
   examDate?: boolean
   createdAt?: boolean
@@ -824,7 +827,7 @@ export type ExamSelectScalar = {
   treatmentId?: boolean
 }
 
-export type ExamOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "petId" | "title" | "cause" | "administeredBy" | "fileUrl" | "resultSummary" | "examDate" | "createdAt" | "updatedAt" | "treatmentId", ExtArgs["result"]["exam"]>
+export type ExamOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "petId" | "title" | "cause" | "administeredBy" | "fileUrls" | "resultSummary" | "examDate" | "createdAt" | "updatedAt" | "treatmentId", ExtArgs["result"]["exam"]>
 export type ExamInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   pet?: boolean | Prisma.PetDefaultArgs<ExtArgs>
   treatment?: boolean | Prisma.Exam$treatmentArgs<ExtArgs>
@@ -850,7 +853,7 @@ export type $ExamPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     title: string
     cause: string
     administeredBy: string | null
-    fileUrl: string | null
+    fileUrls: string[]
     resultSummary: string | null
     examDate: Date
     createdAt: Date
@@ -1286,7 +1289,7 @@ export interface ExamFieldRefs {
   readonly title: Prisma.FieldRef<"Exam", 'String'>
   readonly cause: Prisma.FieldRef<"Exam", 'String'>
   readonly administeredBy: Prisma.FieldRef<"Exam", 'String'>
-  readonly fileUrl: Prisma.FieldRef<"Exam", 'String'>
+  readonly fileUrls: Prisma.FieldRef<"Exam", 'String[]'>
   readonly resultSummary: Prisma.FieldRef<"Exam", 'String'>
   readonly examDate: Prisma.FieldRef<"Exam", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Exam", 'DateTime'>

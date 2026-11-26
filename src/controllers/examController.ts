@@ -10,7 +10,7 @@ export const createExam = async (req: AuthRequest, res: Response) => {
       title,
       cause,
       administeredBy,
-      fileUrl,
+      fileUrls,
       resultSummary,
       examDate,
     } = req.body;
@@ -40,7 +40,7 @@ export const createExam = async (req: AuthRequest, res: Response) => {
         title,
         cause,
         administeredBy,
-        fileUrl,
+        fileUrls: Array.isArray(fileUrls) ? fileUrls : [],
         resultSummary,
         ...(examDate && { examDate: new Date(examDate) }),
       },
@@ -149,7 +149,7 @@ export const getExamById = async (req: AuthRequest, res: Response) => {
 export const updateExam = async (req: AuthRequest, res: Response) => {
   try {
     const { id } = req.params;
-    const { title, cause, administeredBy, fileUrl, resultSummary, examDate } =
+    const { title, cause, administeredBy, fileUrls, resultSummary, examDate } =
       req.body;
     const userId = req.user?.userId;
 
@@ -177,7 +177,7 @@ export const updateExam = async (req: AuthRequest, res: Response) => {
         title,
         cause,
         administeredBy,
-        fileUrl,
+        ...(Array.isArray(fileUrls) && { fileUrls }),
         resultSummary,
         ...(examDate && { examDate: new Date(examDate) }),
       },
