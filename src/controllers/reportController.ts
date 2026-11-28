@@ -31,7 +31,7 @@ async function buildPetReport(petId: string) {
 
   if (!pet) return null;
 
-  const [weightEntries, symptoms, treatments, exams, vaccines, notes] =
+  const [weightEntries, symptoms, events, treatments, exams, vaccines, notes] =
     await Promise.all([
       prisma.weightEntry.findMany({
         where: { petId },
@@ -40,6 +40,16 @@ async function buildPetReport(petId: string) {
       prisma.symptom.findMany({
         where: { petId },
         orderBy: { observedAt: "desc" },
+      }),
+      prisma.event.findMany({
+        where: { petId },
+        orderBy: { eventDate: "desc" },
+        select: {
+          id: true,
+          title: true,
+          type: true,
+          eventDate: true,
+        },
       }),
       prisma.treatment.findMany({
         where: { petId },
@@ -61,7 +71,16 @@ async function buildPetReport(petId: string) {
       }),
     ]);
 
-  return { pet, weightEntries, symptoms, treatments, exams, vaccines, notes };
+  return {
+    pet,
+    weightEntries,
+    symptoms,
+    events,
+    treatments,
+    exams,
+    vaccines,
+    notes,
+  };
 }
 
 // GET /api/reports/pet/:petId  (authenticated, owner only)
