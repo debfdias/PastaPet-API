@@ -10,6 +10,9 @@ import vaccineRoutes from "./routes/vaccineRoutes";
 import examRoutes from "./routes/examRoutes";
 import treatmentRoutes from "./routes/treatmentRoutes";
 import reminderRoutes from "./routes/reminderRoutes";
+import symptomRoutes from "./routes/symptomRoutes";
+import weightRoutes from "./routes/weightRoutes";
+import reportRoutes from "./routes/reportRoutes";
 import { startReminderCron } from "./jobs/reminderCron";
 
 export const app = express();
@@ -40,6 +43,9 @@ app.use("/api/vaccines", vaccineRoutes);
 app.use("/api/exams", examRoutes);
 app.use("/api/treatments", treatmentRoutes);
 app.use("/api/reminders", reminderRoutes);
+app.use("/api/symptoms", symptomRoutes);
+app.use("/api/weights", weightRoutes);
+app.use("/api/reports", reportRoutes);
 
 // Health check endpoint
 app.get("/health", (req, res) => {

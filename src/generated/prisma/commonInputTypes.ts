@@ -287,6 +287,23 @@ export type EnumReminderTypeWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumReminderTypeFilter<$PrismaModel>
 }
 
+export type EnumSymptomTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.SymptomType | Prisma.EnumSymptomTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.SymptomType[] | Prisma.ListEnumSymptomTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SymptomType[] | Prisma.ListEnumSymptomTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSymptomTypeFilter<$PrismaModel> | $Enums.SymptomType
+}
+
+export type EnumSymptomTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.SymptomType | Prisma.EnumSymptomTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.SymptomType[] | Prisma.ListEnumSymptomTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SymptomType[] | Prisma.ListEnumSymptomTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSymptomTypeWithAggregatesFilter<$PrismaModel> | $Enums.SymptomType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumSymptomTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumSymptomTypeFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -571,6 +588,23 @@ export type NestedEnumReminderTypeWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumReminderTypeFilter<$PrismaModel>
   _max?: Prisma.NestedEnumReminderTypeFilter<$PrismaModel>
+}
+
+export type NestedEnumSymptomTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.SymptomType | Prisma.EnumSymptomTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.SymptomType[] | Prisma.ListEnumSymptomTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SymptomType[] | Prisma.ListEnumSymptomTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSymptomTypeFilter<$PrismaModel> | $Enums.SymptomType
+}
+
+export type NestedEnumSymptomTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.SymptomType | Prisma.EnumSymptomTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.SymptomType[] | Prisma.ListEnumSymptomTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SymptomType[] | Prisma.ListEnumSymptomTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSymptomTypeWithAggregatesFilter<$PrismaModel> | $Enums.SymptomType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumSymptomTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumSymptomTypeFilter<$PrismaModel>
 }
 
 

@@ -54,3 +54,19 @@ export const ReminderType = {
 } as const
 
 export type ReminderType = (typeof ReminderType)[keyof typeof ReminderType]
+
+
+export const SymptomType = {
+  VOMITING: 'VOMITING',
+  DIARRHEA: 'DIARRHEA',
+  APPETITE_LOSS: 'APPETITE_LOSS',
+  LETHARGY: 'LETHARGY',
+  COUGHING: 'COUGHING',
+  SNEEZING: 'SNEEZING',
+  ITCHING: 'ITCHING',
+  LIMPING: 'LIMPING',
+  SEIZURE: 'SEIZURE',
+  OTHER: 'OTHER'
+} as const
+
+export type SymptomType = (typeof SymptomType)[keyof typeof SymptomType]

@@ -242,6 +242,7 @@ export type UserWhereInput = {
   notes?: Prisma.NoteListRelationFilter
   events?: Prisma.EventListRelationFilter
   reminders?: Prisma.ReminderListRelationFilter
+  symptoms?: Prisma.SymptomListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -261,6 +262,7 @@ export type UserOrderByWithRelationInput = {
   notes?: Prisma.NoteOrderByRelationAggregateInput
   events?: Prisma.EventOrderByRelationAggregateInput
   reminders?: Prisma.ReminderOrderByRelationAggregateInput
+  symptoms?: Prisma.SymptomOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -283,6 +285,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   notes?: Prisma.NoteListRelationFilter
   events?: Prisma.EventListRelationFilter
   reminders?: Prisma.ReminderListRelationFilter
+  symptoms?: Prisma.SymptomListRelationFilter
 }, "id" | "email" | "verificationToken">
 
 export type UserOrderByWithAggregationInput = {
@@ -338,6 +341,7 @@ export type UserCreateInput = {
   notes?: Prisma.NoteCreateNestedManyWithoutAuthorInput
   events?: Prisma.EventCreateNestedManyWithoutUserInput
   reminders?: Prisma.ReminderCreateNestedManyWithoutUserInput
+  symptoms?: Prisma.SymptomCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -357,6 +361,7 @@ export type UserUncheckedCreateInput = {
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutAuthorInput
   events?: Prisma.EventUncheckedCreateNestedManyWithoutUserInput
   reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutUserInput
+  symptoms?: Prisma.SymptomUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -376,6 +381,7 @@ export type UserUpdateInput = {
   notes?: Prisma.NoteUpdateManyWithoutAuthorNestedInput
   events?: Prisma.EventUpdateManyWithoutUserNestedInput
   reminders?: Prisma.ReminderUpdateManyWithoutUserNestedInput
+  symptoms?: Prisma.SymptomUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -395,6 +401,7 @@ export type UserUncheckedUpdateInput = {
   notes?: Prisma.NoteUncheckedUpdateManyWithoutAuthorNestedInput
   events?: Prisma.EventUncheckedUpdateManyWithoutUserNestedInput
   reminders?: Prisma.ReminderUncheckedUpdateManyWithoutUserNestedInput
+  symptoms?: Prisma.SymptomUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -568,6 +575,20 @@ export type UserUpdateOneRequiredWithoutRemindersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRemindersInput, Prisma.UserUpdateWithoutRemindersInput>, Prisma.UserUncheckedUpdateWithoutRemindersInput>
 }
 
+export type UserCreateNestedOneWithoutSymptomsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSymptomsInput, Prisma.UserUncheckedCreateWithoutSymptomsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSymptomsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutSymptomsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSymptomsInput, Prisma.UserUncheckedCreateWithoutSymptomsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSymptomsInput
+  upsert?: Prisma.UserUpsertWithoutSymptomsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSymptomsInput, Prisma.UserUpdateWithoutSymptomsInput>, Prisma.UserUncheckedUpdateWithoutSymptomsInput>
+}
+
 export type UserCreateWithoutPetsInput = {
   id?: string
   fullName: string
@@ -584,6 +605,7 @@ export type UserCreateWithoutPetsInput = {
   notes?: Prisma.NoteCreateNestedManyWithoutAuthorInput
   events?: Prisma.EventCreateNestedManyWithoutUserInput
   reminders?: Prisma.ReminderCreateNestedManyWithoutUserInput
+  symptoms?: Prisma.SymptomCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPetsInput = {
@@ -602,6 +624,7 @@ export type UserUncheckedCreateWithoutPetsInput = {
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutAuthorInput
   events?: Prisma.EventUncheckedCreateNestedManyWithoutUserInput
   reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutUserInput
+  symptoms?: Prisma.SymptomUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPetsInput = {
@@ -636,6 +659,7 @@ export type UserUpdateWithoutPetsInput = {
   notes?: Prisma.NoteUpdateManyWithoutAuthorNestedInput
   events?: Prisma.EventUpdateManyWithoutUserNestedInput
   reminders?: Prisma.ReminderUpdateManyWithoutUserNestedInput
+  symptoms?: Prisma.SymptomUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPetsInput = {
@@ -654,6 +678,7 @@ export type UserUncheckedUpdateWithoutPetsInput = {
   notes?: Prisma.NoteUncheckedUpdateManyWithoutAuthorNestedInput
   events?: Prisma.EventUncheckedUpdateManyWithoutUserNestedInput
   reminders?: Prisma.ReminderUncheckedUpdateManyWithoutUserNestedInput
+  symptoms?: Prisma.SymptomUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutNotesInput = {
@@ -672,6 +697,7 @@ export type UserCreateWithoutNotesInput = {
   pets?: Prisma.PetCreateNestedManyWithoutUserInput
   events?: Prisma.EventCreateNestedManyWithoutUserInput
   reminders?: Prisma.ReminderCreateNestedManyWithoutUserInput
+  symptoms?: Prisma.SymptomCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNotesInput = {
@@ -690,6 +716,7 @@ export type UserUncheckedCreateWithoutNotesInput = {
   pets?: Prisma.PetUncheckedCreateNestedManyWithoutUserInput
   events?: Prisma.EventUncheckedCreateNestedManyWithoutUserInput
   reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutUserInput
+  symptoms?: Prisma.SymptomUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNotesInput = {
@@ -724,6 +751,7 @@ export type UserUpdateWithoutNotesInput = {
   pets?: Prisma.PetUpdateManyWithoutUserNestedInput
   events?: Prisma.EventUpdateManyWithoutUserNestedInput
   reminders?: Prisma.ReminderUpdateManyWithoutUserNestedInput
+  symptoms?: Prisma.SymptomUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotesInput = {
@@ -742,6 +770,7 @@ export type UserUncheckedUpdateWithoutNotesInput = {
   pets?: Prisma.PetUncheckedUpdateManyWithoutUserNestedInput
   events?: Prisma.EventUncheckedUpdateManyWithoutUserNestedInput
   reminders?: Prisma.ReminderUncheckedUpdateManyWithoutUserNestedInput
+  symptoms?: Prisma.SymptomUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutEventsInput = {
@@ -760,6 +789,7 @@ export type UserCreateWithoutEventsInput = {
   pets?: Prisma.PetCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteCreateNestedManyWithoutAuthorInput
   reminders?: Prisma.ReminderCreateNestedManyWithoutUserInput
+  symptoms?: Prisma.SymptomCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutEventsInput = {
@@ -778,6 +808,7 @@ export type UserUncheckedCreateWithoutEventsInput = {
   pets?: Prisma.PetUncheckedCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutAuthorInput
   reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutUserInput
+  symptoms?: Prisma.SymptomUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutEventsInput = {
@@ -812,6 +843,7 @@ export type UserUpdateWithoutEventsInput = {
   pets?: Prisma.PetUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUpdateManyWithoutAuthorNestedInput
   reminders?: Prisma.ReminderUpdateManyWithoutUserNestedInput
+  symptoms?: Prisma.SymptomUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEventsInput = {
@@ -830,6 +862,7 @@ export type UserUncheckedUpdateWithoutEventsInput = {
   pets?: Prisma.PetUncheckedUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUncheckedUpdateManyWithoutAuthorNestedInput
   reminders?: Prisma.ReminderUncheckedUpdateManyWithoutUserNestedInput
+  symptoms?: Prisma.SymptomUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutRemindersInput = {
@@ -848,6 +881,7 @@ export type UserCreateWithoutRemindersInput = {
   pets?: Prisma.PetCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteCreateNestedManyWithoutAuthorInput
   events?: Prisma.EventCreateNestedManyWithoutUserInput
+  symptoms?: Prisma.SymptomCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRemindersInput = {
@@ -866,6 +900,7 @@ export type UserUncheckedCreateWithoutRemindersInput = {
   pets?: Prisma.PetUncheckedCreateNestedManyWithoutUserInput
   notes?: Prisma.NoteUncheckedCreateNestedManyWithoutAuthorInput
   events?: Prisma.EventUncheckedCreateNestedManyWithoutUserInput
+  symptoms?: Prisma.SymptomUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRemindersInput = {
@@ -900,6 +935,7 @@ export type UserUpdateWithoutRemindersInput = {
   pets?: Prisma.PetUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUpdateManyWithoutAuthorNestedInput
   events?: Prisma.EventUpdateManyWithoutUserNestedInput
+  symptoms?: Prisma.SymptomUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRemindersInput = {
@@ -918,6 +954,99 @@ export type UserUncheckedUpdateWithoutRemindersInput = {
   pets?: Prisma.PetUncheckedUpdateManyWithoutUserNestedInput
   notes?: Prisma.NoteUncheckedUpdateManyWithoutAuthorNestedInput
   events?: Prisma.EventUncheckedUpdateManyWithoutUserNestedInput
+  symptoms?: Prisma.SymptomUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutSymptomsInput = {
+  id?: string
+  fullName: string
+  email: string
+  password: string
+  isVerified?: boolean
+  verificationToken?: string | null
+  verificationTokenExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetTokenExpires?: Date | string | null
+  passwordResetTokenUsed?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  pets?: Prisma.PetCreateNestedManyWithoutUserInput
+  notes?: Prisma.NoteCreateNestedManyWithoutAuthorInput
+  events?: Prisma.EventCreateNestedManyWithoutUserInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutSymptomsInput = {
+  id?: string
+  fullName: string
+  email: string
+  password: string
+  isVerified?: boolean
+  verificationToken?: string | null
+  verificationTokenExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetTokenExpires?: Date | string | null
+  passwordResetTokenUsed?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  pets?: Prisma.PetUncheckedCreateNestedManyWithoutUserInput
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutAuthorInput
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutUserInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutSymptomsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSymptomsInput, Prisma.UserUncheckedCreateWithoutSymptomsInput>
+}
+
+export type UserUpsertWithoutSymptomsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSymptomsInput, Prisma.UserUncheckedUpdateWithoutSymptomsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSymptomsInput, Prisma.UserUncheckedCreateWithoutSymptomsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSymptomsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSymptomsInput, Prisma.UserUncheckedUpdateWithoutSymptomsInput>
+}
+
+export type UserUpdateWithoutSymptomsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verificationToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationTokenExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetTokenExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetTokenUsed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pets?: Prisma.PetUpdateManyWithoutUserNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutAuthorNestedInput
+  events?: Prisma.EventUpdateManyWithoutUserNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSymptomsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verificationToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationTokenExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetTokenExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetTokenUsed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pets?: Prisma.PetUncheckedUpdateManyWithoutUserNestedInput
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutAuthorNestedInput
+  events?: Prisma.EventUncheckedUpdateManyWithoutUserNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -930,6 +1059,7 @@ export type UserCountOutputType = {
   notes: number
   events: number
   reminders: number
+  symptoms: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -937,6 +1067,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   notes?: boolean | UserCountOutputTypeCountNotesArgs
   events?: boolean | UserCountOutputTypeCountEventsArgs
   reminders?: boolean | UserCountOutputTypeCountRemindersArgs
+  symptoms?: boolean | UserCountOutputTypeCountSymptomsArgs
 }
 
 /**
@@ -977,6 +1108,13 @@ export type UserCountOutputTypeCountRemindersArgs<ExtArgs extends runtime.Types.
   where?: Prisma.ReminderWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSymptomsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SymptomWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -995,6 +1133,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   notes?: boolean | Prisma.User$notesArgs<ExtArgs>
   events?: boolean | Prisma.User$eventsArgs<ExtArgs>
   reminders?: boolean | Prisma.User$remindersArgs<ExtArgs>
+  symptoms?: boolean | Prisma.User$symptomsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1049,6 +1188,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   notes?: boolean | Prisma.User$notesArgs<ExtArgs>
   events?: boolean | Prisma.User$eventsArgs<ExtArgs>
   reminders?: boolean | Prisma.User$remindersArgs<ExtArgs>
+  symptoms?: boolean | Prisma.User$symptomsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1061,6 +1201,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     notes: Prisma.$NotePayload<ExtArgs>[]
     events: Prisma.$EventPayload<ExtArgs>[]
     reminders: Prisma.$ReminderPayload<ExtArgs>[]
+    symptoms: Prisma.$SymptomPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1473,6 +1614,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   notes<T extends Prisma.User$notesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   events<T extends Prisma.User$eventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reminders<T extends Prisma.User$remindersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$remindersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReminderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  symptoms<T extends Prisma.User$symptomsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$symptomsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SymptomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2000,6 +2142,30 @@ export type User$remindersArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.ReminderScalarFieldEnum | Prisma.ReminderScalarFieldEnum[]
+}
+
+/**
+ * User.symptoms
+ */
+export type User$symptomsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Symptom
+   */
+  select?: Prisma.SymptomSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Symptom
+   */
+  omit?: Prisma.SymptomOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SymptomInclude<ExtArgs> | null
+  where?: Prisma.SymptomWhereInput
+  orderBy?: Prisma.SymptomOrderByWithRelationInput | Prisma.SymptomOrderByWithRelationInput[]
+  cursor?: Prisma.SymptomWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SymptomScalarFieldEnum | Prisma.SymptomScalarFieldEnum[]
 }
 
 /**
