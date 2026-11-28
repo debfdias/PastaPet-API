@@ -67,3 +67,18 @@ export type Medication = Prisma.MedicationModel
  * 
  */
 export type Reminder = Prisma.ReminderModel
+/**
+ * Model Symptom
+ * 
+ */
+export type Symptom = Prisma.SymptomModel
+/**
+ * Model WeightEntry
+ * 
+ */
+export type WeightEntry = Prisma.WeightEntryModel
+/**
+ * Model ReportShare
+ * 
+ */
+export type ReportShare = Prisma.ReportShareModel

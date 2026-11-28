@@ -60,7 +60,10 @@ export const ModelName = {
   Exam: 'Exam',
   Treatment: 'Treatment',
   Medication: 'Medication',
-  Reminder: 'Reminder'
+  Reminder: 'Reminder',
+  Symptom: 'Symptom',
+  WeightEntry: 'WeightEntry',
+  ReportShare: 'ReportShare'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -248,6 +251,45 @@ export const ReminderScalarFieldEnum = {
 } as const
 
 export type ReminderScalarFieldEnum = (typeof ReminderScalarFieldEnum)[keyof typeof ReminderScalarFieldEnum]
+
+
+export const SymptomScalarFieldEnum = {
+  id: 'id',
+  petId: 'petId',
+  userId: 'userId',
+  type: 'type',
+  severity: 'severity',
+  notes: 'notes',
+  observedAt: 'observedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SymptomScalarFieldEnum = (typeof SymptomScalarFieldEnum)[keyof typeof SymptomScalarFieldEnum]
+
+
+export const WeightEntryScalarFieldEnum = {
+  id: 'id',
+  petId: 'petId',
+  weight: 'weight',
+  measuredAt: 'measuredAt',
+  note: 'note',
+  createdAt: 'createdAt'
+} as const
+
+export type WeightEntryScalarFieldEnum = (typeof WeightEntryScalarFieldEnum)[keyof typeof WeightEntryScalarFieldEnum]
+
+
+export const ReportShareScalarFieldEnum = {
+  id: 'id',
+  petId: 'petId',
+  token: 'token',
+  enabled: 'enabled',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
+} as const
+
+export type ReportShareScalarFieldEnum = (typeof ReportShareScalarFieldEnum)[keyof typeof ReportShareScalarFieldEnum]
 
 
 export const SortOrder = {

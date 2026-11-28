@@ -327,6 +327,9 @@ export type PetWhereInput = {
   Exam?: Prisma.ExamListRelationFilter
   Treatment?: Prisma.TreatmentListRelationFilter
   reminders?: Prisma.ReminderListRelationFilter
+  symptoms?: Prisma.SymptomListRelationFilter
+  weightEntries?: Prisma.WeightEntryListRelationFilter
+  reportShares?: Prisma.ReportShareListRelationFilter
 }
 
 export type PetOrderByWithRelationInput = {
@@ -355,6 +358,9 @@ export type PetOrderByWithRelationInput = {
   Exam?: Prisma.ExamOrderByRelationAggregateInput
   Treatment?: Prisma.TreatmentOrderByRelationAggregateInput
   reminders?: Prisma.ReminderOrderByRelationAggregateInput
+  symptoms?: Prisma.SymptomOrderByRelationAggregateInput
+  weightEntries?: Prisma.WeightEntryOrderByRelationAggregateInput
+  reportShares?: Prisma.ReportShareOrderByRelationAggregateInput
 }
 
 export type PetWhereUniqueInput = Prisma.AtLeast<{
@@ -386,6 +392,9 @@ export type PetWhereUniqueInput = Prisma.AtLeast<{
   Exam?: Prisma.ExamListRelationFilter
   Treatment?: Prisma.TreatmentListRelationFilter
   reminders?: Prisma.ReminderListRelationFilter
+  symptoms?: Prisma.SymptomListRelationFilter
+  weightEntries?: Prisma.WeightEntryListRelationFilter
+  reportShares?: Prisma.ReportShareListRelationFilter
 }, "id">
 
 export type PetOrderByWithAggregationInput = {
@@ -463,6 +472,9 @@ export type PetCreateInput = {
   Exam?: Prisma.ExamCreateNestedManyWithoutPetInput
   Treatment?: Prisma.TreatmentCreateNestedManyWithoutPetInput
   reminders?: Prisma.ReminderCreateNestedManyWithoutPetInput
+  symptoms?: Prisma.SymptomCreateNestedManyWithoutPetInput
+  weightEntries?: Prisma.WeightEntryCreateNestedManyWithoutPetInput
+  reportShares?: Prisma.ReportShareCreateNestedManyWithoutPetInput
 }
 
 export type PetUncheckedCreateInput = {
@@ -490,6 +502,9 @@ export type PetUncheckedCreateInput = {
   Exam?: Prisma.ExamUncheckedCreateNestedManyWithoutPetInput
   Treatment?: Prisma.TreatmentUncheckedCreateNestedManyWithoutPetInput
   reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutPetInput
+  symptoms?: Prisma.SymptomUncheckedCreateNestedManyWithoutPetInput
+  weightEntries?: Prisma.WeightEntryUncheckedCreateNestedManyWithoutPetInput
+  reportShares?: Prisma.ReportShareUncheckedCreateNestedManyWithoutPetInput
 }
 
 export type PetUpdateInput = {
@@ -517,6 +532,9 @@ export type PetUpdateInput = {
   Exam?: Prisma.ExamUpdateManyWithoutPetNestedInput
   Treatment?: Prisma.TreatmentUpdateManyWithoutPetNestedInput
   reminders?: Prisma.ReminderUpdateManyWithoutPetNestedInput
+  symptoms?: Prisma.SymptomUpdateManyWithoutPetNestedInput
+  weightEntries?: Prisma.WeightEntryUpdateManyWithoutPetNestedInput
+  reportShares?: Prisma.ReportShareUpdateManyWithoutPetNestedInput
 }
 
 export type PetUncheckedUpdateInput = {
@@ -544,6 +562,9 @@ export type PetUncheckedUpdateInput = {
   Exam?: Prisma.ExamUncheckedUpdateManyWithoutPetNestedInput
   Treatment?: Prisma.TreatmentUncheckedUpdateManyWithoutPetNestedInput
   reminders?: Prisma.ReminderUncheckedUpdateManyWithoutPetNestedInput
+  symptoms?: Prisma.SymptomUncheckedUpdateManyWithoutPetNestedInput
+  weightEntries?: Prisma.WeightEntryUncheckedUpdateManyWithoutPetNestedInput
+  reportShares?: Prisma.ReportShareUncheckedUpdateManyWithoutPetNestedInput
 }
 
 export type PetCreateManyInput = {
@@ -847,6 +868,48 @@ export type PetUpdateOneWithoutRemindersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PetUpdateToOneWithWhereWithoutRemindersInput, Prisma.PetUpdateWithoutRemindersInput>, Prisma.PetUncheckedUpdateWithoutRemindersInput>
 }
 
+export type PetCreateNestedOneWithoutSymptomsInput = {
+  create?: Prisma.XOR<Prisma.PetCreateWithoutSymptomsInput, Prisma.PetUncheckedCreateWithoutSymptomsInput>
+  connectOrCreate?: Prisma.PetCreateOrConnectWithoutSymptomsInput
+  connect?: Prisma.PetWhereUniqueInput
+}
+
+export type PetUpdateOneRequiredWithoutSymptomsNestedInput = {
+  create?: Prisma.XOR<Prisma.PetCreateWithoutSymptomsInput, Prisma.PetUncheckedCreateWithoutSymptomsInput>
+  connectOrCreate?: Prisma.PetCreateOrConnectWithoutSymptomsInput
+  upsert?: Prisma.PetUpsertWithoutSymptomsInput
+  connect?: Prisma.PetWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PetUpdateToOneWithWhereWithoutSymptomsInput, Prisma.PetUpdateWithoutSymptomsInput>, Prisma.PetUncheckedUpdateWithoutSymptomsInput>
+}
+
+export type PetCreateNestedOneWithoutWeightEntriesInput = {
+  create?: Prisma.XOR<Prisma.PetCreateWithoutWeightEntriesInput, Prisma.PetUncheckedCreateWithoutWeightEntriesInput>
+  connectOrCreate?: Prisma.PetCreateOrConnectWithoutWeightEntriesInput
+  connect?: Prisma.PetWhereUniqueInput
+}
+
+export type PetUpdateOneRequiredWithoutWeightEntriesNestedInput = {
+  create?: Prisma.XOR<Prisma.PetCreateWithoutWeightEntriesInput, Prisma.PetUncheckedCreateWithoutWeightEntriesInput>
+  connectOrCreate?: Prisma.PetCreateOrConnectWithoutWeightEntriesInput
+  upsert?: Prisma.PetUpsertWithoutWeightEntriesInput
+  connect?: Prisma.PetWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PetUpdateToOneWithWhereWithoutWeightEntriesInput, Prisma.PetUpdateWithoutWeightEntriesInput>, Prisma.PetUncheckedUpdateWithoutWeightEntriesInput>
+}
+
+export type PetCreateNestedOneWithoutReportSharesInput = {
+  create?: Prisma.XOR<Prisma.PetCreateWithoutReportSharesInput, Prisma.PetUncheckedCreateWithoutReportSharesInput>
+  connectOrCreate?: Prisma.PetCreateOrConnectWithoutReportSharesInput
+  connect?: Prisma.PetWhereUniqueInput
+}
+
+export type PetUpdateOneRequiredWithoutReportSharesNestedInput = {
+  create?: Prisma.XOR<Prisma.PetCreateWithoutReportSharesInput, Prisma.PetUncheckedCreateWithoutReportSharesInput>
+  connectOrCreate?: Prisma.PetCreateOrConnectWithoutReportSharesInput
+  upsert?: Prisma.PetUpsertWithoutReportSharesInput
+  connect?: Prisma.PetWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PetUpdateToOneWithWhereWithoutReportSharesInput, Prisma.PetUpdateWithoutReportSharesInput>, Prisma.PetUncheckedUpdateWithoutReportSharesInput>
+}
+
 export type PetCreateWithoutUserInput = {
   id?: string
   name: string
@@ -871,6 +934,9 @@ export type PetCreateWithoutUserInput = {
   Exam?: Prisma.ExamCreateNestedManyWithoutPetInput
   Treatment?: Prisma.TreatmentCreateNestedManyWithoutPetInput
   reminders?: Prisma.ReminderCreateNestedManyWithoutPetInput
+  symptoms?: Prisma.SymptomCreateNestedManyWithoutPetInput
+  weightEntries?: Prisma.WeightEntryCreateNestedManyWithoutPetInput
+  reportShares?: Prisma.ReportShareCreateNestedManyWithoutPetInput
 }
 
 export type PetUncheckedCreateWithoutUserInput = {
@@ -897,6 +963,9 @@ export type PetUncheckedCreateWithoutUserInput = {
   Exam?: Prisma.ExamUncheckedCreateNestedManyWithoutPetInput
   Treatment?: Prisma.TreatmentUncheckedCreateNestedManyWithoutPetInput
   reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutPetInput
+  symptoms?: Prisma.SymptomUncheckedCreateNestedManyWithoutPetInput
+  weightEntries?: Prisma.WeightEntryUncheckedCreateNestedManyWithoutPetInput
+  reportShares?: Prisma.ReportShareUncheckedCreateNestedManyWithoutPetInput
 }
 
 export type PetCreateOrConnectWithoutUserInput = {
@@ -973,6 +1042,9 @@ export type PetCreateWithoutNotesInput = {
   Exam?: Prisma.ExamCreateNestedManyWithoutPetInput
   Treatment?: Prisma.TreatmentCreateNestedManyWithoutPetInput
   reminders?: Prisma.ReminderCreateNestedManyWithoutPetInput
+  symptoms?: Prisma.SymptomCreateNestedManyWithoutPetInput
+  weightEntries?: Prisma.WeightEntryCreateNestedManyWithoutPetInput
+  reportShares?: Prisma.ReportShareCreateNestedManyWithoutPetInput
 }
 
 export type PetUncheckedCreateWithoutNotesInput = {
@@ -999,6 +1071,9 @@ export type PetUncheckedCreateWithoutNotesInput = {
   Exam?: Prisma.ExamUncheckedCreateNestedManyWithoutPetInput
   Treatment?: Prisma.TreatmentUncheckedCreateNestedManyWithoutPetInput
   reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutPetInput
+  symptoms?: Prisma.SymptomUncheckedCreateNestedManyWithoutPetInput
+  weightEntries?: Prisma.WeightEntryUncheckedCreateNestedManyWithoutPetInput
+  reportShares?: Prisma.ReportShareUncheckedCreateNestedManyWithoutPetInput
 }
 
 export type PetCreateOrConnectWithoutNotesInput = {
@@ -1041,6 +1116,9 @@ export type PetUpdateWithoutNotesInput = {
   Exam?: Prisma.ExamUpdateManyWithoutPetNestedInput
   Treatment?: Prisma.TreatmentUpdateManyWithoutPetNestedInput
   reminders?: Prisma.ReminderUpdateManyWithoutPetNestedInput
+  symptoms?: Prisma.SymptomUpdateManyWithoutPetNestedInput
+  weightEntries?: Prisma.WeightEntryUpdateManyWithoutPetNestedInput
+  reportShares?: Prisma.ReportShareUpdateManyWithoutPetNestedInput
 }
 
 export type PetUncheckedUpdateWithoutNotesInput = {
@@ -1067,6 +1145,9 @@ export type PetUncheckedUpdateWithoutNotesInput = {
   Exam?: Prisma.ExamUncheckedUpdateManyWithoutPetNestedInput
   Treatment?: Prisma.TreatmentUncheckedUpdateManyWithoutPetNestedInput
   reminders?: Prisma.ReminderUncheckedUpdateManyWithoutPetNestedInput
+  symptoms?: Prisma.SymptomUncheckedUpdateManyWithoutPetNestedInput
+  weightEntries?: Prisma.WeightEntryUncheckedUpdateManyWithoutPetNestedInput
+  reportShares?: Prisma.ReportShareUncheckedUpdateManyWithoutPetNestedInput
 }
 
 export type PetCreateWithoutEventsInput = {
@@ -1093,6 +1174,9 @@ export type PetCreateWithoutEventsInput = {
   Exam?: Prisma.ExamCreateNestedManyWithoutPetInput
   Treatment?: Prisma.TreatmentCreateNestedManyWithoutPetInput
   reminders?: Prisma.ReminderCreateNestedManyWithoutPetInput
+  symptoms?: Prisma.SymptomCreateNestedManyWithoutPetInput
+  weightEntries?: Prisma.WeightEntryCreateNestedManyWithoutPetInput
+  reportShares?: Prisma.ReportShareCreateNestedManyWithoutPetInput
 }
 
 export type PetUncheckedCreateWithoutEventsInput = {
@@ -1119,6 +1203,9 @@ export type PetUncheckedCreateWithoutEventsInput = {
   Exam?: Prisma.ExamUncheckedCreateNestedManyWithoutPetInput
   Treatment?: Prisma.TreatmentUncheckedCreateNestedManyWithoutPetInput
   reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutPetInput
+  symptoms?: Prisma.SymptomUncheckedCreateNestedManyWithoutPetInput
+  weightEntries?: Prisma.WeightEntryUncheckedCreateNestedManyWithoutPetInput
+  reportShares?: Prisma.ReportShareUncheckedCreateNestedManyWithoutPetInput
 }
 
 export type PetCreateOrConnectWithoutEventsInput = {
@@ -1161,6 +1248,9 @@ export type PetUpdateWithoutEventsInput = {
   Exam?: Prisma.ExamUpdateManyWithoutPetNestedInput
   Treatment?: Prisma.TreatmentUpdateManyWithoutPetNestedInput
   reminders?: Prisma.ReminderUpdateManyWithoutPetNestedInput
+  symptoms?: Prisma.SymptomUpdateManyWithoutPetNestedInput
+  weightEntries?: Prisma.WeightEntryUpdateManyWithoutPetNestedInput
+  reportShares?: Prisma.ReportShareUpdateManyWithoutPetNestedInput
 }
 
 export type PetUncheckedUpdateWithoutEventsInput = {
@@ -1187,6 +1277,9 @@ export type PetUncheckedUpdateWithoutEventsInput = {
   Exam?: Prisma.ExamUncheckedUpdateManyWithoutPetNestedInput
   Treatment?: Prisma.TreatmentUncheckedUpdateManyWithoutPetNestedInput
   reminders?: Prisma.ReminderUncheckedUpdateManyWithoutPetNestedInput
+  symptoms?: Prisma.SymptomUncheckedUpdateManyWithoutPetNestedInput
+  weightEntries?: Prisma.WeightEntryUncheckedUpdateManyWithoutPetNestedInput
+  reportShares?: Prisma.ReportShareUncheckedUpdateManyWithoutPetNestedInput
 }
 
 export type PetCreateWithoutVaccineRecordInput = {
@@ -1213,6 +1306,9 @@ export type PetCreateWithoutVaccineRecordInput = {
   Exam?: Prisma.ExamCreateNestedManyWithoutPetInput
   Treatment?: Prisma.TreatmentCreateNestedManyWithoutPetInput
   reminders?: Prisma.ReminderCreateNestedManyWithoutPetInput
+  symptoms?: Prisma.SymptomCreateNestedManyWithoutPetInput
+  weightEntries?: Prisma.WeightEntryCreateNestedManyWithoutPetInput
+  reportShares?: Prisma.ReportShareCreateNestedManyWithoutPetInput
 }
 
 export type PetUncheckedCreateWithoutVaccineRecordInput = {
@@ -1239,6 +1335,9 @@ export type PetUncheckedCreateWithoutVaccineRecordInput = {
   Exam?: Prisma.ExamUncheckedCreateNestedManyWithoutPetInput
   Treatment?: Prisma.TreatmentUncheckedCreateNestedManyWithoutPetInput
   reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutPetInput
+  symptoms?: Prisma.SymptomUncheckedCreateNestedManyWithoutPetInput
+  weightEntries?: Prisma.WeightEntryUncheckedCreateNestedManyWithoutPetInput
+  reportShares?: Prisma.ReportShareUncheckedCreateNestedManyWithoutPetInput
 }
 
 export type PetCreateOrConnectWithoutVaccineRecordInput = {
@@ -1281,6 +1380,9 @@ export type PetUpdateWithoutVaccineRecordInput = {
   Exam?: Prisma.ExamUpdateManyWithoutPetNestedInput
   Treatment?: Prisma.TreatmentUpdateManyWithoutPetNestedInput
   reminders?: Prisma.ReminderUpdateManyWithoutPetNestedInput
+  symptoms?: Prisma.SymptomUpdateManyWithoutPetNestedInput
+  weightEntries?: Prisma.WeightEntryUpdateManyWithoutPetNestedInput
+  reportShares?: Prisma.ReportShareUpdateManyWithoutPetNestedInput
 }
 
 export type PetUncheckedUpdateWithoutVaccineRecordInput = {
@@ -1307,6 +1409,9 @@ export type PetUncheckedUpdateWithoutVaccineRecordInput = {
   Exam?: Prisma.ExamUncheckedUpdateManyWithoutPetNestedInput
   Treatment?: Prisma.TreatmentUncheckedUpdateManyWithoutPetNestedInput
   reminders?: Prisma.ReminderUncheckedUpdateManyWithoutPetNestedInput
+  symptoms?: Prisma.SymptomUncheckedUpdateManyWithoutPetNestedInput
+  weightEntries?: Prisma.WeightEntryUncheckedUpdateManyWithoutPetNestedInput
+  reportShares?: Prisma.ReportShareUncheckedUpdateManyWithoutPetNestedInput
 }
 
 export type PetCreateWithoutExamInput = {
@@ -1333,6 +1438,9 @@ export type PetCreateWithoutExamInput = {
   VaccineRecord?: Prisma.VaccineRecordCreateNestedManyWithoutPetInput
   Treatment?: Prisma.TreatmentCreateNestedManyWithoutPetInput
   reminders?: Prisma.ReminderCreateNestedManyWithoutPetInput
+  symptoms?: Prisma.SymptomCreateNestedManyWithoutPetInput
+  weightEntries?: Prisma.WeightEntryCreateNestedManyWithoutPetInput
+  reportShares?: Prisma.ReportShareCreateNestedManyWithoutPetInput
 }
 
 export type PetUncheckedCreateWithoutExamInput = {
@@ -1359,6 +1467,9 @@ export type PetUncheckedCreateWithoutExamInput = {
   VaccineRecord?: Prisma.VaccineRecordUncheckedCreateNestedManyWithoutPetInput
   Treatment?: Prisma.TreatmentUncheckedCreateNestedManyWithoutPetInput
   reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutPetInput
+  symptoms?: Prisma.SymptomUncheckedCreateNestedManyWithoutPetInput
+  weightEntries?: Prisma.WeightEntryUncheckedCreateNestedManyWithoutPetInput
+  reportShares?: Prisma.ReportShareUncheckedCreateNestedManyWithoutPetInput
 }
 
 export type PetCreateOrConnectWithoutExamInput = {
@@ -1401,6 +1512,9 @@ export type PetUpdateWithoutExamInput = {
   VaccineRecord?: Prisma.VaccineRecordUpdateManyWithoutPetNestedInput
   Treatment?: Prisma.TreatmentUpdateManyWithoutPetNestedInput
   reminders?: Prisma.ReminderUpdateManyWithoutPetNestedInput
+  symptoms?: Prisma.SymptomUpdateManyWithoutPetNestedInput
+  weightEntries?: Prisma.WeightEntryUpdateManyWithoutPetNestedInput
+  reportShares?: Prisma.ReportShareUpdateManyWithoutPetNestedInput
 }
 
 export type PetUncheckedUpdateWithoutExamInput = {
@@ -1427,6 +1541,9 @@ export type PetUncheckedUpdateWithoutExamInput = {
   VaccineRecord?: Prisma.VaccineRecordUncheckedUpdateManyWithoutPetNestedInput
   Treatment?: Prisma.TreatmentUncheckedUpdateManyWithoutPetNestedInput
   reminders?: Prisma.ReminderUncheckedUpdateManyWithoutPetNestedInput
+  symptoms?: Prisma.SymptomUncheckedUpdateManyWithoutPetNestedInput
+  weightEntries?: Prisma.WeightEntryUncheckedUpdateManyWithoutPetNestedInput
+  reportShares?: Prisma.ReportShareUncheckedUpdateManyWithoutPetNestedInput
 }
 
 export type PetCreateWithoutTreatmentInput = {
@@ -1453,6 +1570,9 @@ export type PetCreateWithoutTreatmentInput = {
   VaccineRecord?: Prisma.VaccineRecordCreateNestedManyWithoutPetInput
   Exam?: Prisma.ExamCreateNestedManyWithoutPetInput
   reminders?: Prisma.ReminderCreateNestedManyWithoutPetInput
+  symptoms?: Prisma.SymptomCreateNestedManyWithoutPetInput
+  weightEntries?: Prisma.WeightEntryCreateNestedManyWithoutPetInput
+  reportShares?: Prisma.ReportShareCreateNestedManyWithoutPetInput
 }
 
 export type PetUncheckedCreateWithoutTreatmentInput = {
@@ -1479,6 +1599,9 @@ export type PetUncheckedCreateWithoutTreatmentInput = {
   VaccineRecord?: Prisma.VaccineRecordUncheckedCreateNestedManyWithoutPetInput
   Exam?: Prisma.ExamUncheckedCreateNestedManyWithoutPetInput
   reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutPetInput
+  symptoms?: Prisma.SymptomUncheckedCreateNestedManyWithoutPetInput
+  weightEntries?: Prisma.WeightEntryUncheckedCreateNestedManyWithoutPetInput
+  reportShares?: Prisma.ReportShareUncheckedCreateNestedManyWithoutPetInput
 }
 
 export type PetCreateOrConnectWithoutTreatmentInput = {
@@ -1521,6 +1644,9 @@ export type PetUpdateWithoutTreatmentInput = {
   VaccineRecord?: Prisma.VaccineRecordUpdateManyWithoutPetNestedInput
   Exam?: Prisma.ExamUpdateManyWithoutPetNestedInput
   reminders?: Prisma.ReminderUpdateManyWithoutPetNestedInput
+  symptoms?: Prisma.SymptomUpdateManyWithoutPetNestedInput
+  weightEntries?: Prisma.WeightEntryUpdateManyWithoutPetNestedInput
+  reportShares?: Prisma.ReportShareUpdateManyWithoutPetNestedInput
 }
 
 export type PetUncheckedUpdateWithoutTreatmentInput = {
@@ -1547,6 +1673,9 @@ export type PetUncheckedUpdateWithoutTreatmentInput = {
   VaccineRecord?: Prisma.VaccineRecordUncheckedUpdateManyWithoutPetNestedInput
   Exam?: Prisma.ExamUncheckedUpdateManyWithoutPetNestedInput
   reminders?: Prisma.ReminderUncheckedUpdateManyWithoutPetNestedInput
+  symptoms?: Prisma.SymptomUncheckedUpdateManyWithoutPetNestedInput
+  weightEntries?: Prisma.WeightEntryUncheckedUpdateManyWithoutPetNestedInput
+  reportShares?: Prisma.ReportShareUncheckedUpdateManyWithoutPetNestedInput
 }
 
 export type PetCreateWithoutRemindersInput = {
@@ -1573,6 +1702,9 @@ export type PetCreateWithoutRemindersInput = {
   VaccineRecord?: Prisma.VaccineRecordCreateNestedManyWithoutPetInput
   Exam?: Prisma.ExamCreateNestedManyWithoutPetInput
   Treatment?: Prisma.TreatmentCreateNestedManyWithoutPetInput
+  symptoms?: Prisma.SymptomCreateNestedManyWithoutPetInput
+  weightEntries?: Prisma.WeightEntryCreateNestedManyWithoutPetInput
+  reportShares?: Prisma.ReportShareCreateNestedManyWithoutPetInput
 }
 
 export type PetUncheckedCreateWithoutRemindersInput = {
@@ -1599,6 +1731,9 @@ export type PetUncheckedCreateWithoutRemindersInput = {
   VaccineRecord?: Prisma.VaccineRecordUncheckedCreateNestedManyWithoutPetInput
   Exam?: Prisma.ExamUncheckedCreateNestedManyWithoutPetInput
   Treatment?: Prisma.TreatmentUncheckedCreateNestedManyWithoutPetInput
+  symptoms?: Prisma.SymptomUncheckedCreateNestedManyWithoutPetInput
+  weightEntries?: Prisma.WeightEntryUncheckedCreateNestedManyWithoutPetInput
+  reportShares?: Prisma.ReportShareUncheckedCreateNestedManyWithoutPetInput
 }
 
 export type PetCreateOrConnectWithoutRemindersInput = {
@@ -1641,6 +1776,9 @@ export type PetUpdateWithoutRemindersInput = {
   VaccineRecord?: Prisma.VaccineRecordUpdateManyWithoutPetNestedInput
   Exam?: Prisma.ExamUpdateManyWithoutPetNestedInput
   Treatment?: Prisma.TreatmentUpdateManyWithoutPetNestedInput
+  symptoms?: Prisma.SymptomUpdateManyWithoutPetNestedInput
+  weightEntries?: Prisma.WeightEntryUpdateManyWithoutPetNestedInput
+  reportShares?: Prisma.ReportShareUpdateManyWithoutPetNestedInput
 }
 
 export type PetUncheckedUpdateWithoutRemindersInput = {
@@ -1667,6 +1805,405 @@ export type PetUncheckedUpdateWithoutRemindersInput = {
   VaccineRecord?: Prisma.VaccineRecordUncheckedUpdateManyWithoutPetNestedInput
   Exam?: Prisma.ExamUncheckedUpdateManyWithoutPetNestedInput
   Treatment?: Prisma.TreatmentUncheckedUpdateManyWithoutPetNestedInput
+  symptoms?: Prisma.SymptomUncheckedUpdateManyWithoutPetNestedInput
+  weightEntries?: Prisma.WeightEntryUncheckedUpdateManyWithoutPetNestedInput
+  reportShares?: Prisma.ReportShareUncheckedUpdateManyWithoutPetNestedInput
+}
+
+export type PetCreateWithoutSymptomsInput = {
+  id?: string
+  name: string
+  dob: Date | string
+  weight: number
+  type: $Enums.PetType
+  breed: string
+  gender: $Enums.PetGender
+  image?: string | null
+  active?: boolean
+  hasPetPlan?: boolean
+  petPlanName?: string | null
+  hasFuneraryPlan?: boolean
+  funeraryPlanStartDate?: Date | string | null
+  fivStatus?: $Enums.FivFelvStatus
+  felvStatus?: $Enums.FivFelvStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutPetsInput
+  notes?: Prisma.NoteCreateNestedManyWithoutPetInput
+  events?: Prisma.EventCreateNestedManyWithoutPetInput
+  VaccineRecord?: Prisma.VaccineRecordCreateNestedManyWithoutPetInput
+  Exam?: Prisma.ExamCreateNestedManyWithoutPetInput
+  Treatment?: Prisma.TreatmentCreateNestedManyWithoutPetInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutPetInput
+  weightEntries?: Prisma.WeightEntryCreateNestedManyWithoutPetInput
+  reportShares?: Prisma.ReportShareCreateNestedManyWithoutPetInput
+}
+
+export type PetUncheckedCreateWithoutSymptomsInput = {
+  id?: string
+  name: string
+  dob: Date | string
+  weight: number
+  type: $Enums.PetType
+  breed: string
+  gender: $Enums.PetGender
+  image?: string | null
+  active?: boolean
+  hasPetPlan?: boolean
+  petPlanName?: string | null
+  hasFuneraryPlan?: boolean
+  funeraryPlanStartDate?: Date | string | null
+  fivStatus?: $Enums.FivFelvStatus
+  felvStatus?: $Enums.FivFelvStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  userId: string
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutPetInput
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutPetInput
+  VaccineRecord?: Prisma.VaccineRecordUncheckedCreateNestedManyWithoutPetInput
+  Exam?: Prisma.ExamUncheckedCreateNestedManyWithoutPetInput
+  Treatment?: Prisma.TreatmentUncheckedCreateNestedManyWithoutPetInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutPetInput
+  weightEntries?: Prisma.WeightEntryUncheckedCreateNestedManyWithoutPetInput
+  reportShares?: Prisma.ReportShareUncheckedCreateNestedManyWithoutPetInput
+}
+
+export type PetCreateOrConnectWithoutSymptomsInput = {
+  where: Prisma.PetWhereUniqueInput
+  create: Prisma.XOR<Prisma.PetCreateWithoutSymptomsInput, Prisma.PetUncheckedCreateWithoutSymptomsInput>
+}
+
+export type PetUpsertWithoutSymptomsInput = {
+  update: Prisma.XOR<Prisma.PetUpdateWithoutSymptomsInput, Prisma.PetUncheckedUpdateWithoutSymptomsInput>
+  create: Prisma.XOR<Prisma.PetCreateWithoutSymptomsInput, Prisma.PetUncheckedCreateWithoutSymptomsInput>
+  where?: Prisma.PetWhereInput
+}
+
+export type PetUpdateToOneWithWhereWithoutSymptomsInput = {
+  where?: Prisma.PetWhereInput
+  data: Prisma.XOR<Prisma.PetUpdateWithoutSymptomsInput, Prisma.PetUncheckedUpdateWithoutSymptomsInput>
+}
+
+export type PetUpdateWithoutSymptomsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  dob?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  weight?: Prisma.FloatFieldUpdateOperationsInput | number
+  type?: Prisma.EnumPetTypeFieldUpdateOperationsInput | $Enums.PetType
+  breed?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.EnumPetGenderFieldUpdateOperationsInput | $Enums.PetGender
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasPetPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  petPlanName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasFuneraryPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  funeraryPlanStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fivStatus?: Prisma.EnumFivFelvStatusFieldUpdateOperationsInput | $Enums.FivFelvStatus
+  felvStatus?: Prisma.EnumFivFelvStatusFieldUpdateOperationsInput | $Enums.FivFelvStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutPetsNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutPetNestedInput
+  events?: Prisma.EventUpdateManyWithoutPetNestedInput
+  VaccineRecord?: Prisma.VaccineRecordUpdateManyWithoutPetNestedInput
+  Exam?: Prisma.ExamUpdateManyWithoutPetNestedInput
+  Treatment?: Prisma.TreatmentUpdateManyWithoutPetNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutPetNestedInput
+  weightEntries?: Prisma.WeightEntryUpdateManyWithoutPetNestedInput
+  reportShares?: Prisma.ReportShareUpdateManyWithoutPetNestedInput
+}
+
+export type PetUncheckedUpdateWithoutSymptomsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  dob?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  weight?: Prisma.FloatFieldUpdateOperationsInput | number
+  type?: Prisma.EnumPetTypeFieldUpdateOperationsInput | $Enums.PetType
+  breed?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.EnumPetGenderFieldUpdateOperationsInput | $Enums.PetGender
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasPetPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  petPlanName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasFuneraryPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  funeraryPlanStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fivStatus?: Prisma.EnumFivFelvStatusFieldUpdateOperationsInput | $Enums.FivFelvStatus
+  felvStatus?: Prisma.EnumFivFelvStatusFieldUpdateOperationsInput | $Enums.FivFelvStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutPetNestedInput
+  events?: Prisma.EventUncheckedUpdateManyWithoutPetNestedInput
+  VaccineRecord?: Prisma.VaccineRecordUncheckedUpdateManyWithoutPetNestedInput
+  Exam?: Prisma.ExamUncheckedUpdateManyWithoutPetNestedInput
+  Treatment?: Prisma.TreatmentUncheckedUpdateManyWithoutPetNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutPetNestedInput
+  weightEntries?: Prisma.WeightEntryUncheckedUpdateManyWithoutPetNestedInput
+  reportShares?: Prisma.ReportShareUncheckedUpdateManyWithoutPetNestedInput
+}
+
+export type PetCreateWithoutWeightEntriesInput = {
+  id?: string
+  name: string
+  dob: Date | string
+  weight: number
+  type: $Enums.PetType
+  breed: string
+  gender: $Enums.PetGender
+  image?: string | null
+  active?: boolean
+  hasPetPlan?: boolean
+  petPlanName?: string | null
+  hasFuneraryPlan?: boolean
+  funeraryPlanStartDate?: Date | string | null
+  fivStatus?: $Enums.FivFelvStatus
+  felvStatus?: $Enums.FivFelvStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutPetsInput
+  notes?: Prisma.NoteCreateNestedManyWithoutPetInput
+  events?: Prisma.EventCreateNestedManyWithoutPetInput
+  VaccineRecord?: Prisma.VaccineRecordCreateNestedManyWithoutPetInput
+  Exam?: Prisma.ExamCreateNestedManyWithoutPetInput
+  Treatment?: Prisma.TreatmentCreateNestedManyWithoutPetInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutPetInput
+  symptoms?: Prisma.SymptomCreateNestedManyWithoutPetInput
+  reportShares?: Prisma.ReportShareCreateNestedManyWithoutPetInput
+}
+
+export type PetUncheckedCreateWithoutWeightEntriesInput = {
+  id?: string
+  name: string
+  dob: Date | string
+  weight: number
+  type: $Enums.PetType
+  breed: string
+  gender: $Enums.PetGender
+  image?: string | null
+  active?: boolean
+  hasPetPlan?: boolean
+  petPlanName?: string | null
+  hasFuneraryPlan?: boolean
+  funeraryPlanStartDate?: Date | string | null
+  fivStatus?: $Enums.FivFelvStatus
+  felvStatus?: $Enums.FivFelvStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  userId: string
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutPetInput
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutPetInput
+  VaccineRecord?: Prisma.VaccineRecordUncheckedCreateNestedManyWithoutPetInput
+  Exam?: Prisma.ExamUncheckedCreateNestedManyWithoutPetInput
+  Treatment?: Prisma.TreatmentUncheckedCreateNestedManyWithoutPetInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutPetInput
+  symptoms?: Prisma.SymptomUncheckedCreateNestedManyWithoutPetInput
+  reportShares?: Prisma.ReportShareUncheckedCreateNestedManyWithoutPetInput
+}
+
+export type PetCreateOrConnectWithoutWeightEntriesInput = {
+  where: Prisma.PetWhereUniqueInput
+  create: Prisma.XOR<Prisma.PetCreateWithoutWeightEntriesInput, Prisma.PetUncheckedCreateWithoutWeightEntriesInput>
+}
+
+export type PetUpsertWithoutWeightEntriesInput = {
+  update: Prisma.XOR<Prisma.PetUpdateWithoutWeightEntriesInput, Prisma.PetUncheckedUpdateWithoutWeightEntriesInput>
+  create: Prisma.XOR<Prisma.PetCreateWithoutWeightEntriesInput, Prisma.PetUncheckedCreateWithoutWeightEntriesInput>
+  where?: Prisma.PetWhereInput
+}
+
+export type PetUpdateToOneWithWhereWithoutWeightEntriesInput = {
+  where?: Prisma.PetWhereInput
+  data: Prisma.XOR<Prisma.PetUpdateWithoutWeightEntriesInput, Prisma.PetUncheckedUpdateWithoutWeightEntriesInput>
+}
+
+export type PetUpdateWithoutWeightEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  dob?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  weight?: Prisma.FloatFieldUpdateOperationsInput | number
+  type?: Prisma.EnumPetTypeFieldUpdateOperationsInput | $Enums.PetType
+  breed?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.EnumPetGenderFieldUpdateOperationsInput | $Enums.PetGender
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasPetPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  petPlanName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasFuneraryPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  funeraryPlanStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fivStatus?: Prisma.EnumFivFelvStatusFieldUpdateOperationsInput | $Enums.FivFelvStatus
+  felvStatus?: Prisma.EnumFivFelvStatusFieldUpdateOperationsInput | $Enums.FivFelvStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutPetsNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutPetNestedInput
+  events?: Prisma.EventUpdateManyWithoutPetNestedInput
+  VaccineRecord?: Prisma.VaccineRecordUpdateManyWithoutPetNestedInput
+  Exam?: Prisma.ExamUpdateManyWithoutPetNestedInput
+  Treatment?: Prisma.TreatmentUpdateManyWithoutPetNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutPetNestedInput
+  symptoms?: Prisma.SymptomUpdateManyWithoutPetNestedInput
+  reportShares?: Prisma.ReportShareUpdateManyWithoutPetNestedInput
+}
+
+export type PetUncheckedUpdateWithoutWeightEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  dob?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  weight?: Prisma.FloatFieldUpdateOperationsInput | number
+  type?: Prisma.EnumPetTypeFieldUpdateOperationsInput | $Enums.PetType
+  breed?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.EnumPetGenderFieldUpdateOperationsInput | $Enums.PetGender
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasPetPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  petPlanName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasFuneraryPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  funeraryPlanStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fivStatus?: Prisma.EnumFivFelvStatusFieldUpdateOperationsInput | $Enums.FivFelvStatus
+  felvStatus?: Prisma.EnumFivFelvStatusFieldUpdateOperationsInput | $Enums.FivFelvStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutPetNestedInput
+  events?: Prisma.EventUncheckedUpdateManyWithoutPetNestedInput
+  VaccineRecord?: Prisma.VaccineRecordUncheckedUpdateManyWithoutPetNestedInput
+  Exam?: Prisma.ExamUncheckedUpdateManyWithoutPetNestedInput
+  Treatment?: Prisma.TreatmentUncheckedUpdateManyWithoutPetNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutPetNestedInput
+  symptoms?: Prisma.SymptomUncheckedUpdateManyWithoutPetNestedInput
+  reportShares?: Prisma.ReportShareUncheckedUpdateManyWithoutPetNestedInput
+}
+
+export type PetCreateWithoutReportSharesInput = {
+  id?: string
+  name: string
+  dob: Date | string
+  weight: number
+  type: $Enums.PetType
+  breed: string
+  gender: $Enums.PetGender
+  image?: string | null
+  active?: boolean
+  hasPetPlan?: boolean
+  petPlanName?: string | null
+  hasFuneraryPlan?: boolean
+  funeraryPlanStartDate?: Date | string | null
+  fivStatus?: $Enums.FivFelvStatus
+  felvStatus?: $Enums.FivFelvStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutPetsInput
+  notes?: Prisma.NoteCreateNestedManyWithoutPetInput
+  events?: Prisma.EventCreateNestedManyWithoutPetInput
+  VaccineRecord?: Prisma.VaccineRecordCreateNestedManyWithoutPetInput
+  Exam?: Prisma.ExamCreateNestedManyWithoutPetInput
+  Treatment?: Prisma.TreatmentCreateNestedManyWithoutPetInput
+  reminders?: Prisma.ReminderCreateNestedManyWithoutPetInput
+  symptoms?: Prisma.SymptomCreateNestedManyWithoutPetInput
+  weightEntries?: Prisma.WeightEntryCreateNestedManyWithoutPetInput
+}
+
+export type PetUncheckedCreateWithoutReportSharesInput = {
+  id?: string
+  name: string
+  dob: Date | string
+  weight: number
+  type: $Enums.PetType
+  breed: string
+  gender: $Enums.PetGender
+  image?: string | null
+  active?: boolean
+  hasPetPlan?: boolean
+  petPlanName?: string | null
+  hasFuneraryPlan?: boolean
+  funeraryPlanStartDate?: Date | string | null
+  fivStatus?: $Enums.FivFelvStatus
+  felvStatus?: $Enums.FivFelvStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  userId: string
+  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutPetInput
+  events?: Prisma.EventUncheckedCreateNestedManyWithoutPetInput
+  VaccineRecord?: Prisma.VaccineRecordUncheckedCreateNestedManyWithoutPetInput
+  Exam?: Prisma.ExamUncheckedCreateNestedManyWithoutPetInput
+  Treatment?: Prisma.TreatmentUncheckedCreateNestedManyWithoutPetInput
+  reminders?: Prisma.ReminderUncheckedCreateNestedManyWithoutPetInput
+  symptoms?: Prisma.SymptomUncheckedCreateNestedManyWithoutPetInput
+  weightEntries?: Prisma.WeightEntryUncheckedCreateNestedManyWithoutPetInput
+}
+
+export type PetCreateOrConnectWithoutReportSharesInput = {
+  where: Prisma.PetWhereUniqueInput
+  create: Prisma.XOR<Prisma.PetCreateWithoutReportSharesInput, Prisma.PetUncheckedCreateWithoutReportSharesInput>
+}
+
+export type PetUpsertWithoutReportSharesInput = {
+  update: Prisma.XOR<Prisma.PetUpdateWithoutReportSharesInput, Prisma.PetUncheckedUpdateWithoutReportSharesInput>
+  create: Prisma.XOR<Prisma.PetCreateWithoutReportSharesInput, Prisma.PetUncheckedCreateWithoutReportSharesInput>
+  where?: Prisma.PetWhereInput
+}
+
+export type PetUpdateToOneWithWhereWithoutReportSharesInput = {
+  where?: Prisma.PetWhereInput
+  data: Prisma.XOR<Prisma.PetUpdateWithoutReportSharesInput, Prisma.PetUncheckedUpdateWithoutReportSharesInput>
+}
+
+export type PetUpdateWithoutReportSharesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  dob?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  weight?: Prisma.FloatFieldUpdateOperationsInput | number
+  type?: Prisma.EnumPetTypeFieldUpdateOperationsInput | $Enums.PetType
+  breed?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.EnumPetGenderFieldUpdateOperationsInput | $Enums.PetGender
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasPetPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  petPlanName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasFuneraryPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  funeraryPlanStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fivStatus?: Prisma.EnumFivFelvStatusFieldUpdateOperationsInput | $Enums.FivFelvStatus
+  felvStatus?: Prisma.EnumFivFelvStatusFieldUpdateOperationsInput | $Enums.FivFelvStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutPetsNestedInput
+  notes?: Prisma.NoteUpdateManyWithoutPetNestedInput
+  events?: Prisma.EventUpdateManyWithoutPetNestedInput
+  VaccineRecord?: Prisma.VaccineRecordUpdateManyWithoutPetNestedInput
+  Exam?: Prisma.ExamUpdateManyWithoutPetNestedInput
+  Treatment?: Prisma.TreatmentUpdateManyWithoutPetNestedInput
+  reminders?: Prisma.ReminderUpdateManyWithoutPetNestedInput
+  symptoms?: Prisma.SymptomUpdateManyWithoutPetNestedInput
+  weightEntries?: Prisma.WeightEntryUpdateManyWithoutPetNestedInput
+}
+
+export type PetUncheckedUpdateWithoutReportSharesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  dob?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  weight?: Prisma.FloatFieldUpdateOperationsInput | number
+  type?: Prisma.EnumPetTypeFieldUpdateOperationsInput | $Enums.PetType
+  breed?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.EnumPetGenderFieldUpdateOperationsInput | $Enums.PetGender
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  hasPetPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  petPlanName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasFuneraryPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  funeraryPlanStartDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fivStatus?: Prisma.EnumFivFelvStatusFieldUpdateOperationsInput | $Enums.FivFelvStatus
+  felvStatus?: Prisma.EnumFivFelvStatusFieldUpdateOperationsInput | $Enums.FivFelvStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  notes?: Prisma.NoteUncheckedUpdateManyWithoutPetNestedInput
+  events?: Prisma.EventUncheckedUpdateManyWithoutPetNestedInput
+  VaccineRecord?: Prisma.VaccineRecordUncheckedUpdateManyWithoutPetNestedInput
+  Exam?: Prisma.ExamUncheckedUpdateManyWithoutPetNestedInput
+  Treatment?: Prisma.TreatmentUncheckedUpdateManyWithoutPetNestedInput
+  reminders?: Prisma.ReminderUncheckedUpdateManyWithoutPetNestedInput
+  symptoms?: Prisma.SymptomUncheckedUpdateManyWithoutPetNestedInput
+  weightEntries?: Prisma.WeightEntryUncheckedUpdateManyWithoutPetNestedInput
 }
 
 export type PetCreateManyUserInput = {
@@ -1713,6 +2250,9 @@ export type PetUpdateWithoutUserInput = {
   Exam?: Prisma.ExamUpdateManyWithoutPetNestedInput
   Treatment?: Prisma.TreatmentUpdateManyWithoutPetNestedInput
   reminders?: Prisma.ReminderUpdateManyWithoutPetNestedInput
+  symptoms?: Prisma.SymptomUpdateManyWithoutPetNestedInput
+  weightEntries?: Prisma.WeightEntryUpdateManyWithoutPetNestedInput
+  reportShares?: Prisma.ReportShareUpdateManyWithoutPetNestedInput
 }
 
 export type PetUncheckedUpdateWithoutUserInput = {
@@ -1739,6 +2279,9 @@ export type PetUncheckedUpdateWithoutUserInput = {
   Exam?: Prisma.ExamUncheckedUpdateManyWithoutPetNestedInput
   Treatment?: Prisma.TreatmentUncheckedUpdateManyWithoutPetNestedInput
   reminders?: Prisma.ReminderUncheckedUpdateManyWithoutPetNestedInput
+  symptoms?: Prisma.SymptomUncheckedUpdateManyWithoutPetNestedInput
+  weightEntries?: Prisma.WeightEntryUncheckedUpdateManyWithoutPetNestedInput
+  reportShares?: Prisma.ReportShareUncheckedUpdateManyWithoutPetNestedInput
 }
 
 export type PetUncheckedUpdateManyWithoutUserInput = {
@@ -1773,6 +2316,9 @@ export type PetCountOutputType = {
   Exam: number
   Treatment: number
   reminders: number
+  symptoms: number
+  weightEntries: number
+  reportShares: number
 }
 
 export type PetCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1782,6 +2328,9 @@ export type PetCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.In
   Exam?: boolean | PetCountOutputTypeCountExamArgs
   Treatment?: boolean | PetCountOutputTypeCountTreatmentArgs
   reminders?: boolean | PetCountOutputTypeCountRemindersArgs
+  symptoms?: boolean | PetCountOutputTypeCountSymptomsArgs
+  weightEntries?: boolean | PetCountOutputTypeCountWeightEntriesArgs
+  reportShares?: boolean | PetCountOutputTypeCountReportSharesArgs
 }
 
 /**
@@ -1836,6 +2385,27 @@ export type PetCountOutputTypeCountRemindersArgs<ExtArgs extends runtime.Types.E
   where?: Prisma.ReminderWhereInput
 }
 
+/**
+ * PetCountOutputType without action
+ */
+export type PetCountOutputTypeCountSymptomsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SymptomWhereInput
+}
+
+/**
+ * PetCountOutputType without action
+ */
+export type PetCountOutputTypeCountWeightEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WeightEntryWhereInput
+}
+
+/**
+ * PetCountOutputType without action
+ */
+export type PetCountOutputTypeCountReportSharesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReportShareWhereInput
+}
+
 
 export type PetSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1863,6 +2433,9 @@ export type PetSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
   Exam?: boolean | Prisma.Pet$ExamArgs<ExtArgs>
   Treatment?: boolean | Prisma.Pet$TreatmentArgs<ExtArgs>
   reminders?: boolean | Prisma.Pet$remindersArgs<ExtArgs>
+  symptoms?: boolean | Prisma.Pet$symptomsArgs<ExtArgs>
+  weightEntries?: boolean | Prisma.Pet$weightEntriesArgs<ExtArgs>
+  reportShares?: boolean | Prisma.Pet$reportSharesArgs<ExtArgs>
   _count?: boolean | Prisma.PetCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pet"]>
 
@@ -1940,6 +2513,9 @@ export type PetInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   Exam?: boolean | Prisma.Pet$ExamArgs<ExtArgs>
   Treatment?: boolean | Prisma.Pet$TreatmentArgs<ExtArgs>
   reminders?: boolean | Prisma.Pet$remindersArgs<ExtArgs>
+  symptoms?: boolean | Prisma.Pet$symptomsArgs<ExtArgs>
+  weightEntries?: boolean | Prisma.Pet$weightEntriesArgs<ExtArgs>
+  reportShares?: boolean | Prisma.Pet$reportSharesArgs<ExtArgs>
   _count?: boolean | Prisma.PetCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PetIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1959,6 +2535,9 @@ export type $PetPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
     Exam: Prisma.$ExamPayload<ExtArgs>[]
     Treatment: Prisma.$TreatmentPayload<ExtArgs>[]
     reminders: Prisma.$ReminderPayload<ExtArgs>[]
+    symptoms: Prisma.$SymptomPayload<ExtArgs>[]
+    weightEntries: Prisma.$WeightEntryPayload<ExtArgs>[]
+    reportShares: Prisma.$ReportSharePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2380,6 +2959,9 @@ export interface Prisma__PetClient<T, Null = never, ExtArgs extends runtime.Type
   Exam<T extends Prisma.Pet$ExamArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pet$ExamArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   Treatment<T extends Prisma.Pet$TreatmentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pet$TreatmentArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TreatmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reminders<T extends Prisma.Pet$remindersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pet$remindersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReminderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  symptoms<T extends Prisma.Pet$symptomsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pet$symptomsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SymptomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  weightEntries<T extends Prisma.Pet$weightEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pet$weightEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WeightEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reportShares<T extends Prisma.Pet$reportSharesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Pet$reportSharesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReportSharePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2969,6 +3551,78 @@ export type Pet$remindersArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.ReminderScalarFieldEnum | Prisma.ReminderScalarFieldEnum[]
+}
+
+/**
+ * Pet.symptoms
+ */
+export type Pet$symptomsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Symptom
+   */
+  select?: Prisma.SymptomSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Symptom
+   */
+  omit?: Prisma.SymptomOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SymptomInclude<ExtArgs> | null
+  where?: Prisma.SymptomWhereInput
+  orderBy?: Prisma.SymptomOrderByWithRelationInput | Prisma.SymptomOrderByWithRelationInput[]
+  cursor?: Prisma.SymptomWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SymptomScalarFieldEnum | Prisma.SymptomScalarFieldEnum[]
+}
+
+/**
+ * Pet.weightEntries
+ */
+export type Pet$weightEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WeightEntry
+   */
+  select?: Prisma.WeightEntrySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WeightEntry
+   */
+  omit?: Prisma.WeightEntryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WeightEntryInclude<ExtArgs> | null
+  where?: Prisma.WeightEntryWhereInput
+  orderBy?: Prisma.WeightEntryOrderByWithRelationInput | Prisma.WeightEntryOrderByWithRelationInput[]
+  cursor?: Prisma.WeightEntryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WeightEntryScalarFieldEnum | Prisma.WeightEntryScalarFieldEnum[]
+}
+
+/**
+ * Pet.reportShares
+ */
+export type Pet$reportSharesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ReportShare
+   */
+  select?: Prisma.ReportShareSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ReportShare
+   */
+  omit?: Prisma.ReportShareOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReportShareInclude<ExtArgs> | null
+  where?: Prisma.ReportShareWhereInput
+  orderBy?: Prisma.ReportShareOrderByWithRelationInput | Prisma.ReportShareOrderByWithRelationInput[]
+  cursor?: Prisma.ReportShareWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReportShareScalarFieldEnum | Prisma.ReportShareScalarFieldEnum[]
 }
 
 /**

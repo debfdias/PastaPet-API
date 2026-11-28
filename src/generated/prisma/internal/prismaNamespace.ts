@@ -406,7 +406,10 @@ export const ModelName = {
   Exam: 'Exam',
   Treatment: 'Treatment',
   Medication: 'Medication',
-  Reminder: 'Reminder'
+  Reminder: 'Reminder',
+  Symptom: 'Symptom',
+  WeightEntry: 'WeightEntry',
+  ReportShare: 'ReportShare'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -422,7 +425,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "pet" | "note" | "event" | "vaccineRecord" | "vaccineType" | "exam" | "treatment" | "medication" | "reminder"
+    modelProps: "user" | "pet" | "note" | "event" | "vaccineRecord" | "vaccineType" | "exam" | "treatment" | "medication" | "reminder" | "symptom" | "weightEntry" | "reportShare"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1166,6 +1169,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Symptom: {
+      payload: Prisma.$SymptomPayload<ExtArgs>
+      fields: Prisma.SymptomFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SymptomFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SymptomPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SymptomFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SymptomPayload>
+        }
+        findFirst: {
+          args: Prisma.SymptomFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SymptomPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SymptomFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SymptomPayload>
+        }
+        findMany: {
+          args: Prisma.SymptomFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SymptomPayload>[]
+        }
+        create: {
+          args: Prisma.SymptomCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SymptomPayload>
+        }
+        createMany: {
+          args: Prisma.SymptomCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SymptomCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SymptomPayload>[]
+        }
+        delete: {
+          args: Prisma.SymptomDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SymptomPayload>
+        }
+        update: {
+          args: Prisma.SymptomUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SymptomPayload>
+        }
+        deleteMany: {
+          args: Prisma.SymptomDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SymptomUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SymptomUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SymptomPayload>[]
+        }
+        upsert: {
+          args: Prisma.SymptomUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SymptomPayload>
+        }
+        aggregate: {
+          args: Prisma.SymptomAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSymptom>
+        }
+        groupBy: {
+          args: Prisma.SymptomGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SymptomGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SymptomCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SymptomCountAggregateOutputType> | number
+        }
+      }
+    }
+    WeightEntry: {
+      payload: Prisma.$WeightEntryPayload<ExtArgs>
+      fields: Prisma.WeightEntryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.WeightEntryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeightEntryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.WeightEntryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeightEntryPayload>
+        }
+        findFirst: {
+          args: Prisma.WeightEntryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeightEntryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.WeightEntryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeightEntryPayload>
+        }
+        findMany: {
+          args: Prisma.WeightEntryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeightEntryPayload>[]
+        }
+        create: {
+          args: Prisma.WeightEntryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeightEntryPayload>
+        }
+        createMany: {
+          args: Prisma.WeightEntryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.WeightEntryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeightEntryPayload>[]
+        }
+        delete: {
+          args: Prisma.WeightEntryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeightEntryPayload>
+        }
+        update: {
+          args: Prisma.WeightEntryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeightEntryPayload>
+        }
+        deleteMany: {
+          args: Prisma.WeightEntryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.WeightEntryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.WeightEntryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeightEntryPayload>[]
+        }
+        upsert: {
+          args: Prisma.WeightEntryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WeightEntryPayload>
+        }
+        aggregate: {
+          args: Prisma.WeightEntryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateWeightEntry>
+        }
+        groupBy: {
+          args: Prisma.WeightEntryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WeightEntryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.WeightEntryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.WeightEntryCountAggregateOutputType> | number
+        }
+      }
+    }
+    ReportShare: {
+      payload: Prisma.$ReportSharePayload<ExtArgs>
+      fields: Prisma.ReportShareFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ReportShareFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportSharePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ReportShareFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportSharePayload>
+        }
+        findFirst: {
+          args: Prisma.ReportShareFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportSharePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ReportShareFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportSharePayload>
+        }
+        findMany: {
+          args: Prisma.ReportShareFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportSharePayload>[]
+        }
+        create: {
+          args: Prisma.ReportShareCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportSharePayload>
+        }
+        createMany: {
+          args: Prisma.ReportShareCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ReportShareCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportSharePayload>[]
+        }
+        delete: {
+          args: Prisma.ReportShareDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportSharePayload>
+        }
+        update: {
+          args: Prisma.ReportShareUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportSharePayload>
+        }
+        deleteMany: {
+          args: Prisma.ReportShareDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ReportShareUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ReportShareUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportSharePayload>[]
+        }
+        upsert: {
+          args: Prisma.ReportShareUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportSharePayload>
+        }
+        aggregate: {
+          args: Prisma.ReportShareAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateReportShare>
+        }
+        groupBy: {
+          args: Prisma.ReportShareGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReportShareGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ReportShareCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ReportShareCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1376,6 +1601,45 @@ export const ReminderScalarFieldEnum = {
 export type ReminderScalarFieldEnum = (typeof ReminderScalarFieldEnum)[keyof typeof ReminderScalarFieldEnum]
 
 
+export const SymptomScalarFieldEnum = {
+  id: 'id',
+  petId: 'petId',
+  userId: 'userId',
+  type: 'type',
+  severity: 'severity',
+  notes: 'notes',
+  observedAt: 'observedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SymptomScalarFieldEnum = (typeof SymptomScalarFieldEnum)[keyof typeof SymptomScalarFieldEnum]
+
+
+export const WeightEntryScalarFieldEnum = {
+  id: 'id',
+  petId: 'petId',
+  weight: 'weight',
+  measuredAt: 'measuredAt',
+  note: 'note',
+  createdAt: 'createdAt'
+} as const
+
+export type WeightEntryScalarFieldEnum = (typeof WeightEntryScalarFieldEnum)[keyof typeof WeightEntryScalarFieldEnum]
+
+
+export const ReportShareScalarFieldEnum = {
+  id: 'id',
+  petId: 'petId',
+  token: 'token',
+  enabled: 'enabled',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
+} as const
+
+export type ReportShareScalarFieldEnum = (typeof ReportShareScalarFieldEnum)[keyof typeof ReportShareScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1536,6 +1800,20 @@ export type EnumReminderTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
  * Reference to a field of type 'ReminderType[]'
  */
 export type ListEnumReminderTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ReminderType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'SymptomType'
+ */
+export type EnumSymptomTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SymptomType'>
+    
+
+
+/**
+ * Reference to a field of type 'SymptomType[]'
+ */
+export type ListEnumSymptomTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SymptomType[]'>
     
 
 /**
@@ -1699,6 +1977,9 @@ export type GlobalOmitConfig = {
   treatment?: Prisma.TreatmentOmit
   medication?: Prisma.MedicationOmit
   reminder?: Prisma.ReminderOmit
+  symptom?: Prisma.SymptomOmit
+  weightEntry?: Prisma.WeightEntryOmit
+  reportShare?: Prisma.ReportShareOmit
 }
 
 /* Types for Logging */
